@@ -39,13 +39,13 @@ public class GUI extends JFrame {
 	Document doc;
 	private Parse parse;
 
-	private ArrayList<String> anArray;
-	private ArrayList<JButton> anArrayTwo;
+	private ArrayList<String> nameArray;
+	private ArrayList<JButton> buttonArray;
 	private ArrayList<String> URLArray;
 	private GetCategory data;
 	private ImageParsing imageParse;
 	private JButton[] buttons;
-	private JComboBox comboBox;
+	private JComboBox monthComboBox;
 	private GetImgFromURL URLImage;
 
 	private int buttonWidth = 100;
@@ -68,49 +68,15 @@ public class GUI extends JFrame {
 	public GUI() {
 		super("Add component on JFrame at runtime");
 
-		anArray = new ArrayList<String>();
-		anArrayTwo = new ArrayList<JButton>();
+		nameArray = new ArrayList<String>();
+		buttonArray = new ArrayList<JButton>();
 		URLArray = new ArrayList<String>();
 		URLImage = new GetImgFromURL();
 		imageParse = new ImageParsing();
 		data = new GetCategory();
-		//data.setDate(parse.getCurrDate());
-		//parse.setDate(parse.getCurrDate());
 
 		parse = new Parse();
 
-		try {
-			doc = parse.ParseDoc("Skaldjur");
-			TransformerFactory tfactory = TransformerFactory.newInstance();
-			Transformer xform;
-			xform = tfactory.newTransformer();
-			// that’s the default xform; use a stylesheet to get a real one
-			xform.transform(new DOMSource(doc), new StreamResult(System.out));
-		} catch (Exception e9) {
-
-		}
-		
-		try {
-			URLArray = imageParse.getURLArray(doc);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		
-		try {
-			anArray = data.getArray(doc);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		for (int i = 0; i < anArray.size(); i++) {
-			System.out.println(anArray.get(i));
-			System.out.println(URLArray.get(i));
-		}
-		
-		
-		
-		
-		
 		JButton button = new JButton("Skaldjur");
 		button.setHorizontalTextPosition(SwingConstants.CENTER);
 		button.addActionListener(new ActionListener() {
@@ -119,8 +85,6 @@ public class GUI extends JFrame {
 				lastRow = setButtonsPerRows;
 				rowX = 30;
 				buttonCounter = 0;
-				//data.setCategory("Skaldjur");
-				// buttons = new JButton[0];
 
 				if (buttons != null) {
 					for (i = 0; i < buttons.length; i++) {
@@ -131,9 +95,15 @@ public class GUI extends JFrame {
 
 					}
 				}
-
+				
 				try {
-					anArray = data.getArray(doc);
+					doc = parse.ParseDoc("Skaldjur");
+				} catch (Exception e8) {
+					e8.printStackTrace();
+				}
+				
+				try {
+					nameArray = data.getArray(doc);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -148,12 +118,12 @@ public class GUI extends JFrame {
 					System.out.println(URLArray.get(i));
 				}
 
-				buttons = new JButton[anArray.size()];
+				buttons = new JButton[nameArray.size()];
 
 				for (i = 0; i < buttons.length; i++) {
 
 					buttons[i] = new JButton(
-							anArray.get(i).replace('_', ' '),
+							nameArray.get(i).replace('_', ' '),
 							new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
 					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
 					buttons[i].setForeground(Color.WHITE);
@@ -185,7 +155,7 @@ public class GUI extends JFrame {
 					// buttons[i].setBounds((150*buttonCounter+10), rowY,
 					// buttonWidth, buttonWidth);
 
-					buttons[i].setActionCommand(anArray.get(i));
+					buttons[i].setActionCommand(nameArray.get(i));
 
 					buttons[i].addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -209,11 +179,11 @@ public class GUI extends JFrame {
 				"Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September",
 				"Oktober", "November", "December", };
 
-		comboBox = new JComboBox(patternExamples);
-		comboBox.addActionListener(new ActionListener() {
+		monthComboBox = new JComboBox(patternExamples);
+		monthComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				int index = comboBox.getSelectedIndex();
+				int index = monthComboBox.getSelectedIndex();
 
 				switch (index) {
 				case 0:
@@ -282,7 +252,7 @@ public class GUI extends JFrame {
 																GroupLayout.DEFAULT_SIZE,
 																932,
 																Short.MAX_VALUE)
-														.addComponent(comboBox,
+														.addComponent(monthComboBox,
 																0, 932,
 																Short.MAX_VALUE)
 														.addGroup(
@@ -326,7 +296,7 @@ public class GUI extends JFrame {
 																GroupLayout.PREFERRED_SIZE))
 										.addPreferredGap(
 												ComponentPlacement.UNRELATED)
-										.addComponent(comboBox,
+										.addComponent(monthComboBox,
 												GroupLayout.PREFERRED_SIZE, 25,
 												GroupLayout.PREFERRED_SIZE)
 										.addGap(18)
@@ -350,8 +320,6 @@ public class GUI extends JFrame {
 				lastRow = setButtonsPerRows;
 				rowX = 30;
 				buttonCounter = 0;
-				//data.setCategory("Grönsaker");
-				// buttons = new JButton[0];
 
 				if (buttons != null) {
 					for (i = 0; i < buttons.length; i++) {
@@ -362,9 +330,15 @@ public class GUI extends JFrame {
 
 					}
 				}
-
+				
 				try {
-					anArray = data.getArray(doc);
+					doc = parse.ParseDoc("Grönsaker");
+				} catch (Exception e9) {
+					e9.printStackTrace();
+				}
+				
+				try {
+					nameArray = data.getArray(doc);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -379,12 +353,12 @@ public class GUI extends JFrame {
 					System.out.println(URLArray.get(i));
 				}
 
-				buttons = new JButton[anArray.size()];
+				buttons = new JButton[nameArray.size()];
 
 				for (i = 0; i < buttons.length; i++) {
 
 					buttons[i] = new JButton(
-							anArray.get(i).replace('_', ' '),
+							nameArray.get(i).replace('_', ' '),
 							new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
 					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
 					buttons[i].setForeground(Color.WHITE);
@@ -417,7 +391,7 @@ public class GUI extends JFrame {
 					// buttons[i].setBounds((150*buttonCounter+10), rowY,
 					// buttonWidth, buttonWidth);
 
-					buttons[i].setActionCommand(anArray.get(i));
+					buttons[i].setActionCommand(nameArray.get(i));
 
 					buttons[i].addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
@@ -442,6 +416,6 @@ public class GUI extends JFrame {
 	}
 
 	public JComboBox getComboBox() {
-		return comboBox;
+		return monthComboBox;
 	}
 }

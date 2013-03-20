@@ -35,6 +35,7 @@ public class Parse {
 		doc = builder.parse(conn.getInputStream());
 
 		doc.getDocumentElement().normalize();
+		System.out.println(url);
 		return doc;
 
 	}
