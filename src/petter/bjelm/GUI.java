@@ -17,6 +17,14 @@ import javax.swing.JComboBox;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import org.w3c.dom.Document;
 
 public class GUI extends JFrame {
 
@@ -27,6 +35,10 @@ public class GUI extends JFrame {
 	private int rowY = 0;
 	private int setButtonsPerRows = 9;
 	private int buttonCounter = 0;
+
+	Document doc;
+	private Parse parse;
+
 	private ArrayList<String> anArray;
 	private ArrayList<JButton> anArrayTwo;
 	private ArrayList<String> URLArray;
@@ -62,9 +74,43 @@ public class GUI extends JFrame {
 		URLImage = new GetImgFromURL();
 		imageParse = new ImageParsing();
 		data = new GetCategory();
-		data.setDate(imageParse.getCurrDate());
-		imageParse.setDate(imageParse.getCurrDate());
+		//data.setDate(parse.getCurrDate());
+		//parse.setDate(parse.getCurrDate());
 
+		parse = new Parse();
+
+		try {
+			doc = parse.ParseDoc("Skaldjur");
+			TransformerFactory tfactory = TransformerFactory.newInstance();
+			Transformer xform;
+			xform = tfactory.newTransformer();
+			// that’s the default xform; use a stylesheet to get a real one
+			xform.transform(new DOMSource(doc), new StreamResult(System.out));
+		} catch (Exception e9) {
+
+		}
+		
+		try {
+			URLArray = imageParse.getURLArray(doc);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			anArray = data.getArray(doc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < anArray.size(); i++) {
+			System.out.println(anArray.get(i));
+			System.out.println(URLArray.get(i));
+		}
+		
+		
+		
+		
+		
 		JButton button = new JButton("Skaldjur");
 		button.setHorizontalTextPosition(SwingConstants.CENTER);
 		button.addActionListener(new ActionListener() {
@@ -73,7 +119,7 @@ public class GUI extends JFrame {
 				lastRow = setButtonsPerRows;
 				rowX = 30;
 				buttonCounter = 0;
-				data.setCategory("Skaldjur");
+				//data.setCategory("Skaldjur");
 				// buttons = new JButton[0];
 
 				if (buttons != null) {
@@ -87,13 +133,13 @@ public class GUI extends JFrame {
 				}
 
 				try {
-					anArray = data.getArray();
+					anArray = data.getArray(doc);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
 				try {
-					URLArray = imageParse.getURLArray("Skaldjur");
+					URLArray = imageParse.getURLArray(doc);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -106,7 +152,8 @@ public class GUI extends JFrame {
 
 				for (i = 0; i < buttons.length; i++) {
 
-					buttons[i] = new JButton(anArray.get(i).replace('_', ' '),
+					buttons[i] = new JButton(
+							anArray.get(i).replace('_', ' '),
 							new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
 					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
 					buttons[i].setForeground(Color.WHITE);
@@ -124,13 +171,12 @@ public class GUI extends JFrame {
 					if (buttonCounter == setButtonsPerRows) {
 						buttonCounter = 0;
 
-						buttons[i].setBounds(
-								(buttonWidth * buttonCounter), rowY,
-								buttonWidth, buttonHeight);
+						buttons[i].setBounds((buttonWidth * buttonCounter),
+								rowY, buttonWidth, buttonHeight);
 					} else {
 
 						buttons[i].setBounds(
-								(buttonWidth * buttonCounter + 10*i), rowY,
+								(buttonWidth * buttonCounter + 10 * i), rowY,
 								buttonWidth, buttonHeight);
 					}
 
@@ -171,59 +217,45 @@ public class GUI extends JFrame {
 
 				switch (index) {
 				case 0:
-					data.setDate(imageParse.getCurrDate());
-					imageParse.setDate(imageParse.getCurrDate());
+					parse.setDate(parse.getCurrDate());
 					break;
 				case 1:
-					data.setDate("01");
-					imageParse.setDate("01");
+					parse.setDate("01");
 					break;
 				case 2:
-					data.setDate("02");
-					imageParse.setDate("02");
+					parse.setDate("02");
 					break;
 				case 3:
-					data.setDate("03");
-					imageParse.setDate("03");
+					parse.setDate("03");
 					break;
 				case 4:
-					data.setDate("04");
-					imageParse.setDate("04");
+					parse.setDate("04");
 					break;
 				case 5:
-					data.setDate("05");
-					imageParse.setDate("05");
+					parse.setDate("05");
 					break;
 				case 6:
-					data.setDate("06");
-					imageParse.setDate("06");
+					parse.setDate("06");
 					break;
 				case 7:
-					data.setDate("07");
-					imageParse.setDate("07");
+					parse.setDate("07");
 					break;
 				case 8:
-					data.setDate("08");
-					imageParse.setDate("08");
+					parse.setDate("08");
 					break;
 				case 9:
-					data.setDate("09");
-					imageParse.setDate("09");
+					parse.setDate("09");
 					break;
 				case 10:
-					data.setDate("10");
-					imageParse.setDate("10");
+					parse.setDate("10");
 					break;
 				case 11:
-					data.setDate("11");
-					imageParse.setDate("11");
+					parse.setDate("11");
 					break;
 				case 12:
-					data.setDate("12");
-					imageParse.setDate("12");
+					parse.setDate("12");
 				default:
-					data.setDate("00");
-					imageParse.setDate("00");
+					parse.setDate("00");
 					break;
 				}
 			}
@@ -318,7 +350,7 @@ public class GUI extends JFrame {
 				lastRow = setButtonsPerRows;
 				rowX = 30;
 				buttonCounter = 0;
-				data.setCategory("Grönsaker");
+				//data.setCategory("Grönsaker");
 				// buttons = new JButton[0];
 
 				if (buttons != null) {
@@ -332,13 +364,13 @@ public class GUI extends JFrame {
 				}
 
 				try {
-					anArray = data.getArray();
+					anArray = data.getArray(doc);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 
 				try {
-					URLArray = imageParse.getURLArray("Grönsaker");
+					URLArray = imageParse.getURLArray(doc);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -351,7 +383,8 @@ public class GUI extends JFrame {
 
 				for (i = 0; i < buttons.length; i++) {
 
-					buttons[i] = new JButton(anArray.get(i).replace('_', ' '),
+					buttons[i] = new JButton(
+							anArray.get(i).replace('_', ' '),
 							new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
 					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
 					buttons[i].setForeground(Color.WHITE);
@@ -369,14 +402,14 @@ public class GUI extends JFrame {
 					if (buttonCounter == setButtonsPerRows) {
 						buttonCounter = 0;
 
-						buttons[i].setBounds(
-								(buttonWidth * buttonCounter), rowY,
-								buttonWidth, buttonHeight);
+						buttons[i].setBounds((buttonWidth * buttonCounter),
+								rowY, buttonWidth, buttonHeight);
 					} else {
 
-						buttons[i].setBounds(
-								(buttonWidth * buttonCounter + 10*buttonCounter), rowY,
-								buttonWidth, buttonHeight);
+						buttons[i]
+								.setBounds(
+										(buttonWidth * buttonCounter + 10 * buttonCounter),
+										rowY, buttonWidth, buttonHeight);
 					}
 
 					buttonCounter++;

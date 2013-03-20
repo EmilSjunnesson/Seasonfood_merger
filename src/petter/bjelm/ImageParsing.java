@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -19,8 +18,6 @@ import org.xml.sax.SAXException;
 
 public class ImageParsing {
 
-	private String monthText = "00";
-	private String type = "Grönsaker";
 	private ArrayList<String> imgNamesArray = new ArrayList<String>();
 	private ArrayList<String> imgURLArray = new ArrayList<String>();
 	private Document doc;
@@ -30,30 +27,31 @@ public class ImageParsing {
 
 	}
 
-	// * Ändrar URL till dagens datum */
-	public String getCurrDate() {
-		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONTH) + 1;
-		if (month < 10) {
-			monthText = "0" + Integer.toString(month);
-		} else {
-			monthText = Integer.toString(month);
+	public ArrayList<String> getURLArray(Document docIn) throws IOException,
+			ParserConfigurationException, SAXException, TransformerException {
+		System.out.println("Loading image URL:s......");
+
+		imgNamesArray.clear();
+		imgURLArray.clear();
+
+		doc = docIn;
+
+		Element root = doc.getDocumentElement();
+		NodeList nodes = root.getElementsByTagName("value");
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node data = nodes.item(i);
+
+			if (data instanceof Element) {
+				Element name = (Element) data;
+				imgNamesArray.add(name.getAttribute("fulltext"));
+
+			}
 		}
-		return monthText;
-	}
 
-	public void parse() throws IOException, ParserConfigurationException,
-			SAXException, TransformerException {
-		URL url = new URL(
-				"http://xn--ssongsmat-v2a.nu/w/api.php?format=xml&action=ask&query=[[Kategori:"
-						+ type + "]][[I+säsong+Z3::1912-" + monthText + "-"
-						+ "15" + "]]|?bild");
-		URLConnection conn = url.openConnection();
-		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder builder = factory.newDocumentBuilder();
-		doc = builder.parse(conn.getInputStream());
-
-		doc.getDocumentElement().normalize();
+		for (int i = 0; i < imgNamesArray.size(); i++) {
+			imgURLArray.add(parseImg(imgNamesArray.get(i)));
+		}
+		return imgURLArray;
 	}
 
 	public String parseImg(String imgText) throws IOException,
@@ -83,40 +81,5 @@ public class ImageParsing {
 			}
 		}
 		return s;
-	}
-
-	public ArrayList<String> getURLArray(String kat) throws IOException,
-			ParserConfigurationException, SAXException, TransformerException {
-		System.out.println("Loading image URL:s......");
-
-		type = kat;
-
-		imgNamesArray.clear();
-		imgURLArray.clear();
-
-		parse();
-
-		Element root = doc.getDocumentElement();
-		NodeList nodes = root.getElementsByTagName("value");
-		for (int i = 0; i < nodes.getLength(); i++) {
-			Node data = nodes.item(i);
-
-			if (data instanceof Element) {
-				Element name = (Element) data;
-				imgNamesArray.add(name.getAttribute("fulltext"));
-
-			}
-		}
-
-		for (int i = 0; i < imgNamesArray.size(); i++) {
-			imgURLArray.add(parseImg(imgNamesArray.get(i)));
-		}
-		return imgURLArray;
-	}
-
-	public void setDate(String date) {
-
-		monthText = date;
-
 	}
 }
