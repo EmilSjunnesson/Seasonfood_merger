@@ -15,7 +15,6 @@ public class Parse {
 	private String type = "Grönsaker";
 	private String zone = "Z3";
 	private Document doc;
-	private int c = 0;
 
 	public Parse() {
 
@@ -37,7 +36,6 @@ public class Parse {
 		doc.getDocumentElement().normalize();
 		System.out.println(url);
 		return doc;
-
 	}
 
 	// * Ändrar URL till dagens datum */

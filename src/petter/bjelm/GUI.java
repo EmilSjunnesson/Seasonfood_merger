@@ -236,75 +236,40 @@ public class GUI extends JFrame {
 		buttonTwo.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel = new JPanel();
 		panel.setBorder(null);
+		
+		JComboBox zoneComboBox = new JComboBox();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout
-				.setHorizontalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																panel,
-																GroupLayout.DEFAULT_SIZE,
-																932,
-																Short.MAX_VALUE)
-														.addComponent(monthComboBox,
-																0, 932,
-																Short.MAX_VALUE)
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				buttonTwo,
-																				GroupLayout.DEFAULT_SIZE,
-																				457,
-																				Short.MAX_VALUE)
-																		.addGap(18)
-																		.addComponent(
-																				button,
-																				GroupLayout.DEFAULT_SIZE,
-																				457,
-																				Short.MAX_VALUE)))
-										.addContainerGap()));
-		groupLayout
-				.setVerticalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								Alignment.TRAILING,
-								groupLayout
-										.createSequentialGroup()
-										.addContainerGap(
-												GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																button,
-																GroupLayout.PREFERRED_SIZE,
-																25,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																buttonTwo,
-																GroupLayout.PREFERRED_SIZE,
-																25,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addComponent(monthComboBox,
-												GroupLayout.PREFERRED_SIZE, 25,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(18)
-										.addComponent(panel,
-												GroupLayout.PREFERRED_SIZE,
-												642, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap()));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(buttonTwo, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+							.addGap(18)
+							.addComponent(button, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(monthComboBox, GroupLayout.PREFERRED_SIZE, 716, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(zoneComboBox, 0, 200, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(button, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(buttonTwo, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(monthComboBox, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(zoneComboBox, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 642, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
+		);
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setAutoCreateGaps(true);
 		gl_panel.setAutoCreateContainerGaps(true);
@@ -351,7 +316,7 @@ public class GUI extends JFrame {
 				}
 
 				for (int i = 0; i < URLArray.size(); i++) {
-					System.out.print(nameArray.get(i)+"\t");
+					System.out.print(nameArray.get(i) + "\t");
 					System.out.println(URLArray.get(i));
 				}
 
