@@ -74,9 +74,9 @@ public class GUI extends JFrame {
 		URLImage = new GetImgFromURL();
 		imageParse = new ImageParsing();
 		data = new GetCategory();
-
 		parse = new Parse();
-
+		parse.setDate(parse.getCurrDate());
+		
 		JButton button = new JButton("Skaldjur");
 		button.setHorizontalTextPosition(SwingConstants.CENTER);
 		button.addActionListener(new ActionListener() {
@@ -115,6 +115,7 @@ public class GUI extends JFrame {
 				}
 
 				for (int i = 0; i < URLArray.size(); i++) {
+					System.out.print(nameArray.get(i)+"\t");
 					System.out.println(URLArray.get(i));
 				}
 
@@ -350,6 +351,7 @@ public class GUI extends JFrame {
 				}
 
 				for (int i = 0; i < URLArray.size(); i++) {
+					System.out.print(nameArray.get(i)+"\t");
 					System.out.println(URLArray.get(i));
 				}
 

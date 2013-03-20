@@ -22,7 +22,7 @@ public class ImageParsing {
 	private ArrayList<String> imgURLArray = new ArrayList<String>();
 	private Document doc;
 	private Document imgDoc;
-
+	
 	public ImageParsing() {
 
 	}

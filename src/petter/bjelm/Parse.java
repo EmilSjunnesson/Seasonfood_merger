@@ -15,20 +15,20 @@ public class Parse {
 	private String type = "Grönsaker";
 	private String zone = "Z3";
 	private Document doc;
+	private int c = 0;
 
 	public Parse() {
 
 	}
 
 	public Document ParseDoc(String typeIn) throws Exception {
-		
-		getCurrDate();
+
 		type = typeIn;
 
 		URL url = new URL(
 				"http://xn--ssongsmat-v2a.nu/w/api.php?format=xml&action=ask&query=[[Kategori:"
-						+ type + "]][[I+säsong+"+zone+"::1912-" + monthText + "-"
-						+ "15" + "]]|?bild");
+						+ type + "]][[I+säsong+" + zone + "::1912-" + monthText
+						+ "-" + "15" + "]]|?bild");
 		URLConnection conn = url.openConnection();
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
@@ -55,7 +55,7 @@ public class Parse {
 	public void setDate(String date) {
 		monthText = date;
 	}
-	
+
 	public void setZone(String area) {
 		zone = area;
 	}
