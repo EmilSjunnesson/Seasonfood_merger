@@ -73,100 +73,11 @@ public class GUI extends JFrame {
 		parse.setDate(parse.getCurrDate());
 		parse.setZone("Z2");
 
-		JButton button = new JButton("Skaldjur");
-		button.setHorizontalTextPosition(SwingConstants.CENTER);
-		button.addActionListener(new ActionListener() {
+		JButton shellfishButton = new JButton("Skaldjur");
+		shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		shellfishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg1) {
-				rowY = 0;
-				lastRow = setButtonsPerRows;
-				rowX = 30;
-				buttonCounter = 0;
-
-				if (buttons != null) {
-					for (i = 0; i < buttons.length; i++) {
-
-						panel.remove(buttons[i]);
-						panel.revalidate();
-						panel.repaint();
-
-					}
-				}
-
-				try {
-					doc = parse.ParseDoc("Skaldjur");
-				} catch (Exception e8) {
-					e8.printStackTrace();
-				}
-
-				try {
-					nameArray = data.getArray(doc);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				try {
-					URLArray = imageParse.getURLArray(doc);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-				
-				for (int i = 0; i < URLArray.size(); i++) {
-					System.out.print(nameArray.get(i) + "\t");
-					System.out.println(URLArray.get(i));
-				}
-
-				buttons = new JButton[nameArray.size()];
-
-				for (i = 0; i < buttons.length; i++) {
-					buttons[i] = new JButton(
-							nameArray.get(i).replace('_', ' '), new ImageIcon(
-									URLImage.getURLImage(URLArray.get(i))));
-					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
-					buttons[i].setForeground(Color.WHITE);
-
-					if (i == lastRow) {
-						rowY = rowY + buttonHeight;
-						lastRow = i + setButtonsPerRows;
-						// System.out.println(rowY + " Y");
-
-					} else {
-
-					}
-
-					// System.out.println(buttonCounter);
-					if (buttonCounter == setButtonsPerRows) {
-						buttonCounter = 0;
-
-						buttons[i].setBounds((buttonWidth * buttonCounter),
-								rowY, buttonWidth, buttonHeight);
-					} else {
-
-						buttons[i].setBounds(
-								(buttonWidth * buttonCounter + 10 * i), rowY,
-								buttonWidth, buttonHeight);
-					}
-
-					buttonCounter++;
-					// System.out.println(rowX);
-					// buttons[i].setBounds((150*buttonCounter+10), rowY,
-					// buttonWidth, buttonWidth);
-
-					buttons[i].setActionCommand(nameArray.get(i));
-
-					buttons[i].addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							String choice = e.getActionCommand();
-							JOptionPane.showMessageDialog(null,
-									"You have clicked: " + choice);
-						}
-					});
-
-					panel.add(buttons[i]);
-					panel.revalidate();
-					validate();
-					panel.repaint();
-				}
-
+				buttonLogic("Skaldjur");
 			}
 
 		});
@@ -227,8 +138,8 @@ public class GUI extends JFrame {
 			}
 		});
 
-		JButton buttonTwo = new JButton("Grönsaker");
-		buttonTwo.setHorizontalTextPosition(SwingConstants.CENTER);
+		JButton greenButton = new JButton("Grönsaker");
+		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel = new JPanel();
 		panel.setBorder(null);
 
@@ -281,13 +192,13 @@ public class GUI extends JFrame {
 																groupLayout
 																		.createSequentialGroup()
 																		.addComponent(
-																				buttonTwo,
+																				greenButton,
 																				GroupLayout.DEFAULT_SIZE,
 																				458,
 																				Short.MAX_VALUE)
 																		.addGap(18)
 																		.addComponent(
-																				button,
+																				shellfishButton,
 																				GroupLayout.DEFAULT_SIZE,
 																				458,
 																				Short.MAX_VALUE))
@@ -320,12 +231,12 @@ public class GUI extends JFrame {
 														.createParallelGroup(
 																Alignment.BASELINE)
 														.addComponent(
-																button,
+																shellfishButton,
 																GroupLayout.PREFERRED_SIZE,
 																25,
 																GroupLayout.PREFERRED_SIZE)
 														.addComponent(
-																buttonTwo,
+																greenButton,
 																GroupLayout.PREFERRED_SIZE,
 																25,
 																GroupLayout.PREFERRED_SIZE))
@@ -360,103 +271,9 @@ public class GUI extends JFrame {
 		panel.setLayout(gl_panel);
 		getContentPane().setLayout(groupLayout);
 
-		buttonTwo.addActionListener(new ActionListener() {
+		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				rowY = 0;
-				lastRow = setButtonsPerRows;
-				rowX = 30;
-				buttonCounter = 0;
-
-				if (buttons != null) {
-					for (i = 0; i < buttons.length; i++) {
-
-						panel.remove(buttons[i]);
-						panel.revalidate();
-						panel.repaint();
-
-					}
-				}
-
-				try {
-					doc = parse.ParseDoc("Grönsaker");
-				} catch (Exception e9) {
-					e9.printStackTrace();
-				}
-
-				try {
-					nameArray = data.getArray(doc);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-
-				try {
-					URLArray = imageParse.getURLArray(doc);
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-				
-				if (nameArray.size()!=URLArray.size()) {
-					nameArray.remove(nameArray.indexOf("Svedjerova"));
-				}
-				
-				
-				for (int i = 0; i < URLArray.size(); i++) {
-					System.out.print(nameArray.get(i) + "\t");
-					System.out.println(URLArray.get(i));
-				}
-
-				buttons = new JButton[nameArray.size()];
-
-				for (i = 0; i < buttons.length; i++) {
-					buttons[i] = new JButton(
-							nameArray.get(i).replace('_', ' '), new ImageIcon(
-									URLImage.getURLImage(URLArray.get(i))));
-					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
-					buttons[i].setForeground(Color.WHITE);
-
-					if (i == lastRow) {
-						rowY = rowY + buttonHeight;
-						lastRow = i + setButtonsPerRows;
-						// System.out.println(rowY + " Y");
-
-					} else {
-
-					}
-
-					// System.out.println(buttonCounter);
-					if (buttonCounter == setButtonsPerRows) {
-						buttonCounter = 0;
-
-						buttons[i].setBounds((buttonWidth * buttonCounter),
-								rowY, buttonWidth, buttonHeight);
-					} else {
-
-						buttons[i]
-								.setBounds(
-										(buttonWidth * buttonCounter + 10 * buttonCounter),
-										rowY, buttonWidth, buttonHeight);
-					}
-
-					buttonCounter++;
-					// System.out.println(rowX);
-					// buttons[i].setBounds((150*buttonCounter+10), rowY,
-					// buttonWidth, buttonWidth);
-
-					buttons[i].setActionCommand(nameArray.get(i));
-
-					buttons[i].addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							String choice = e.getActionCommand();
-							JOptionPane.showMessageDialog(null,
-									"You have clicked: " + choice);
-						}
-					});
-
-					panel.add(buttons[i]);
-					panel.revalidate();
-					validate();
-					panel.repaint();
-				}
+				buttonLogic("Grönsaker");
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -467,5 +284,100 @@ public class GUI extends JFrame {
 
 	public JComboBox getComboBox() {
 		return monthComboBox;
+	}
+
+	public void buttonLogic(String category) {
+		rowY = 0;
+		lastRow = setButtonsPerRows;
+		rowX = 30;
+		buttonCounter = 0;
+
+		if (buttons != null) {
+			for (i = 0; i < buttons.length; i++) {
+
+				panel.remove(buttons[i]);
+				panel.revalidate();
+				panel.repaint();
+
+			}
+		}
+
+		try {
+			doc = parse.ParseDoc(category);
+		} catch (Exception e9) {
+			e9.printStackTrace();
+		}
+
+		try {
+			nameArray = data.getArray(doc);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			URLArray = imageParse.getURLArray(doc);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+
+		if (nameArray.size() != URLArray.size()) {
+			nameArray.remove(nameArray.indexOf("Svedjerova"));
+		}
+
+		for (int i = 0; i < URLArray.size(); i++) {
+			System.out.print(nameArray.get(i) + "\t");
+			System.out.println(URLArray.get(i));
+		}
+
+		buttons = new JButton[nameArray.size()];
+
+		for (i = 0; i < buttons.length; i++) {
+			buttons[i] = new JButton(nameArray.get(i).replace('_', ' '),
+					new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
+			buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
+			buttons[i].setForeground(Color.WHITE);
+
+			if (i == lastRow) {
+				rowY = rowY + buttonHeight;
+				lastRow = i + setButtonsPerRows;
+				// System.out.println(rowY + " Y");
+
+			} else {
+
+			}
+
+			// System.out.println(buttonCounter);
+			if (buttonCounter == setButtonsPerRows) {
+				buttonCounter = 0;
+
+				buttons[i].setBounds((buttonWidth * buttonCounter), rowY,
+						buttonWidth, buttonHeight);
+			} else {
+
+				buttons[i].setBounds(
+						(buttonWidth * buttonCounter + 10 * buttonCounter),
+						rowY, buttonWidth, buttonHeight);
+			}
+
+			buttonCounter++;
+			// System.out.println(rowX);
+			// buttons[i].setBounds((150*buttonCounter+10), rowY,
+			// buttonWidth, buttonWidth);
+
+			buttons[i].setActionCommand(nameArray.get(i));
+
+			buttons[i].addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String choice = e.getActionCommand();
+					JOptionPane.showMessageDialog(null, "You have clicked: "
+							+ choice);
+				}
+			});
+
+			panel.add(buttons[i]);
+			panel.revalidate();
+			validate();
+			panel.repaint();
+		}
 	}
 }
