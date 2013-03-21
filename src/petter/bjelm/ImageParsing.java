@@ -82,7 +82,7 @@ public class ImageParsing {
 		URL url = new URL(
 				"http://xn--ssongsmat-v2a.nu/w/api.php?format=xml&action=query&titles="
 						+ imgText.replace(" ", "%20")
-						+ "&prop=imageinfo&iiprop=url&iiurlwidth=150");
+						+ "&prop=imageinfo&iiprop=url&iiurlwidth=180");
 		URLConnection conn = url.openConnection();
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

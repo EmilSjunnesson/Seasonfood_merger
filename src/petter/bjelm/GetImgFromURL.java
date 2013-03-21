@@ -16,6 +16,7 @@ public class GetImgFromURL {
 		try {
 			URL url = new URL(imgURL);
 			image = ImageIO.read(url);
+			
 		} catch (Exception exp) {
 
 		}

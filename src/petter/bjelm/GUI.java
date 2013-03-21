@@ -19,6 +19,10 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import org.w3c.dom.Document;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import java.awt.Font;
+import javax.swing.ScrollPaneConstants;
 
 public class GUI extends JFrame {
 
@@ -27,12 +31,13 @@ public class GUI extends JFrame {
 	private int lastRow = 0;
 	private int rowX = 0;
 	private int rowY = 0;
-	private int setButtonsPerRows = 9;
+	private int setButtonsPerRows = 6;
 	private int buttonCounter = 0;
-
+	private int nrButtons=0;
+	private GroupLayout gl_panel;
 	Document doc;
 	private Parse parse;
-
+	private int panelHeight=0;
 	private ArrayList<String> nameArray;
 	private ArrayList<JButton> buttonArray;
 	private ArrayList<String> URLArray;
@@ -43,8 +48,13 @@ public class GUI extends JFrame {
 	private JComboBox zoneComboBox;
 	private GetImgFromURL URLImage;
 
-	private int buttonWidth = 100;
-	private int buttonHeight = 100;
+	private int buttonWidth = 120;
+	private int buttonHeight = 120;
+	private JScrollPane scrollPane;
+	private JLabel lblKategorier;
+	private JLabel lblRvarorISsong;
+	private JLabel currentMonth;
+	private JLabel lblVljVisningEnligt;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -73,20 +83,12 @@ public class GUI extends JFrame {
 		parse.setDate(parse.getCurrDate());
 		parse.setZone("Z2");
 
-		JButton shellfishButton = new JButton("Skaldjur");
-		shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
-		shellfishButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg1) {
-				buttonLogic("Skaldjur");
-			}
-
-		});
-
 		String[] patternExamples = { "Välj månad", "Januari", "Februari",
 				"Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September",
 				"Oktober", "November", "December", };
 
 		monthComboBox = new JComboBox(patternExamples);
+		monthComboBox.setBounds(1131, 303, 196, 25);
 		monthComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -139,14 +141,14 @@ public class GUI extends JFrame {
 		});
 
 		JButton greenButton = new JButton("Grönsaker");
+		greenButton.setBounds(30, 266, 100, 100);
 		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
-		panel = new JPanel();
-		panel.setBorder(null);
 
 		String[] zones = { "Välj zon", "Sydligaste Sverige", "Södra Sverige",
 				"Norra Sverige" };
 
 		zoneComboBox = new JComboBox(zones);
+		zoneComboBox.setBounds(1131, 266, 196, 24);
 		zoneComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -171,105 +173,80 @@ public class GUI extends JFrame {
 				}
 			}
 		});
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout
-				.setHorizontalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addComponent(
-																panel,
-																GroupLayout.DEFAULT_SIZE,
-																934,
-																Short.MAX_VALUE)
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				greenButton,
-																				GroupLayout.DEFAULT_SIZE,
-																				458,
-																				Short.MAX_VALUE)
-																		.addGap(18)
-																		.addComponent(
-																				shellfishButton,
-																				GroupLayout.DEFAULT_SIZE,
-																				458,
-																				Short.MAX_VALUE))
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addComponent(
-																				monthComboBox,
-																				GroupLayout.PREFERRED_SIZE,
-																				716,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(18)
-																		.addComponent(
-																				zoneComboBox,
-																				0,
-																				200,
-																				Short.MAX_VALUE)))
-										.addContainerGap()));
-		groupLayout
-				.setVerticalGroup(groupLayout
-						.createParallelGroup(Alignment.TRAILING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addContainerGap(
-												GroupLayout.DEFAULT_SIZE,
-												Short.MAX_VALUE)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																shellfishButton,
-																GroupLayout.PREFERRED_SIZE,
-																25,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																greenButton,
-																GroupLayout.PREFERRED_SIZE,
-																25,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.UNRELATED)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																monthComboBox,
-																GroupLayout.PREFERRED_SIZE,
-																25,
-																GroupLayout.PREFERRED_SIZE)
-														.addComponent(
-																zoneComboBox,
-																GroupLayout.PREFERRED_SIZE,
-																24,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addComponent(panel,
-												GroupLayout.PREFERRED_SIZE,
-												642, GroupLayout.PREFERRED_SIZE)
-										.addContainerGap()));
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setAutoCreateGaps(true);
-		gl_panel.setAutoCreateContainerGaps(true);
-		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(
-				Alignment.LEADING).addGap(0, 736, Short.MAX_VALUE));
-		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(
-				Alignment.LEADING).addGap(0, 539, Short.MAX_VALUE));
+		getContentPane().setLayout(null);
+		getContentPane().add(greenButton);
+		getContentPane().add(monthComboBox);
+		getContentPane().add(zoneComboBox);
+		
+				JButton shellfishButton = new JButton("Skaldjur");
+				shellfishButton.setBounds(160, 266, 100, 100);
+				getContentPane().add(shellfishButton);
+				shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
+				shellfishButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg1) {
+						buttonLogic("Skaldjur");
+					}
+
+				});
+		
+		lblKategorier = new JLabel("Kategorier");
+		lblKategorier.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+		lblKategorier.setBounds(30, 224, 230, 31);
+		getContentPane().add(lblKategorier);
+		
+		lblRvarorISsong = new JLabel("R\u00E5varor i s\u00E4song:");
+		lblRvarorISsong.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+		lblRvarorISsong.setBounds(298, 224, 174, 31);
+		getContentPane().add(lblRvarorISsong);
+		
+		currentMonth = new JLabel("Mars");
+		currentMonth.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+		currentMonth.setBounds(471, 224, 118, 31);
+		getContentPane().add(currentMonth);
+		
+		lblVljVisningEnligt = new JLabel("Visa r\u00E5varor f\u00F6r:");
+		lblVljVisningEnligt.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+		lblVljVisningEnligt.setBounds(1131, 224, 196, 31);
+		getContentPane().add(lblVljVisningEnligt);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBorder(null);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setOpaque(false);
+		scrollPane.setViewportBorder(null);
+		scrollPane.getViewport().setOpaque(false);
+		scrollPane.setBounds(298, 266, 780, 466);
+		getContentPane().add(scrollPane);
+		panel = new JPanel();
+		panel.setOpaque(false);
+		scrollPane.setViewportView(panel);
+		panel.setBorder(null);
+		
+		gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0, 840, Short.MAX_VALUE)
+		);
+		
+		if(nrButtons==0){
+			panelHeight=600;
+			System.out.println("NOLLL");
+		}else{
+			panelHeight=nrButtons/6*110;
+			System.out.println("HÖJD: "+panelHeight);
+		}
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGap(0,panelHeight, Short.MAX_VALUE)
+		);
+		
+
 		panel.setLayout(gl_panel);
-		getContentPane().setLayout(groupLayout);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(0, 0, 1366, 768);
+		lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/images/Bakgrund morotter.jpg")));
+		getContentPane().add(lblNewLabel);
 
 		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -277,7 +254,7 @@ public class GUI extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(960, 768);
+		setSize(1366, 768);
 		setResizable(false);
 		setVisible(true);
 	}
@@ -291,8 +268,10 @@ public class GUI extends JFrame {
 		lastRow = setButtonsPerRows;
 		rowX = 30;
 		buttonCounter = 0;
-
+		
+		
 		if (buttons != null) {
+			nrButtons=buttons.length;
 			for (i = 0; i < buttons.length; i++) {
 
 				panel.remove(buttons[i]);
@@ -330,7 +309,7 @@ public class GUI extends JFrame {
 		}
 
 		buttons = new JButton[nameArray.size()];
-
+		
 		for (i = 0; i < buttons.length; i++) {
 			buttons[i] = new JButton(nameArray.get(i).replace('_', ' '),
 					new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
@@ -378,6 +357,10 @@ public class GUI extends JFrame {
 			panel.revalidate();
 			validate();
 			panel.repaint();
+	
 		}
+	}
+	public JPanel getPanel() {
+		return panel;
 	}
 }
