@@ -17,12 +17,6 @@ import javax.swing.JComboBox;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 
@@ -46,6 +40,7 @@ public class GUI extends JFrame {
 	private ImageParsing imageParse;
 	private JButton[] buttons;
 	private JComboBox monthComboBox;
+	private JComboBox zoneComboBox;
 	private GetImgFromURL URLImage;
 
 	private int buttonWidth = 100;
@@ -114,7 +109,7 @@ public class GUI extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
+				
 				for (int i = 0; i < URLArray.size(); i++) {
 					System.out.print(nameArray.get(i) + "\t");
 					System.out.println(URLArray.get(i));
@@ -123,7 +118,6 @@ public class GUI extends JFrame {
 				buttons = new JButton[nameArray.size()];
 
 				for (i = 0; i < buttons.length; i++) {
-
 					buttons[i] = new JButton(
 							nameArray.get(i).replace('_', ' '), new ImageIcon(
 									URLImage.getURLImage(URLArray.get(i))));
@@ -227,7 +221,7 @@ public class GUI extends JFrame {
 				case 12:
 					parse.setDate("12");
 				default:
-					parse.setDate("00");
+					parse.setDate(parse.getCurrDate());
 					break;
 				}
 			}
@@ -241,11 +235,11 @@ public class GUI extends JFrame {
 		String[] zones = { "Välj zon", "Sydligaste Sverige", "Södra Sverige",
 				"Norra Sverige" };
 
-		JComboBox zoneComboBox = new JComboBox(zones);
+		zoneComboBox = new JComboBox(zones);
 		zoneComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				int index = monthComboBox.getSelectedIndex();
+				int index = zoneComboBox.getSelectedIndex();
 
 				switch (index) {
 				case 0:
@@ -400,7 +394,12 @@ public class GUI extends JFrame {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-
+				
+				if (nameArray.size()!=URLArray.size()) {
+					nameArray.remove(nameArray.indexOf("Svedjerova"));
+				}
+				
+				
 				for (int i = 0; i < URLArray.size(); i++) {
 					System.out.print(nameArray.get(i) + "\t");
 					System.out.println(URLArray.get(i));
@@ -409,7 +408,6 @@ public class GUI extends JFrame {
 				buttons = new JButton[nameArray.size()];
 
 				for (i = 0; i < buttons.length; i++) {
-
 					buttons[i] = new JButton(
 							nameArray.get(i).replace('_', ' '), new ImageIcon(
 									URLImage.getURLImage(URLArray.get(i))));
@@ -459,7 +457,6 @@ public class GUI extends JFrame {
 					validate();
 					panel.repaint();
 				}
-
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

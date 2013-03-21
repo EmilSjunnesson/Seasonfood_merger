@@ -47,7 +47,29 @@ public class ImageParsing {
 
 			}
 		}
-
+		
+/*		Element root = doc.getDocumentElement();
+		NodeList nodes = root.getElementsByTagName("Bild");
+		for (int i = 0; i < nodes.getLength(); i++) {
+			Node data = nodes.item(i);
+			
+			
+			System.out.println("HÄR: "+data.getNodeValue());
+			
+			if (nodes.item(i).hasChildNodes()){
+				if (data instanceof Element) {
+					Element name = (Element) data;
+					
+					imgNamesArray.add(name.getAttributeNode("fulltext").getTextContent());
+					System.out.println("DETTA: "+name.getAttributeNode("fulltext").getTextContent());
+					//imgNamesArray.add("fil:ravaru_ikon_sasongsmat.png");
+					
+				}
+			}else{
+				imgNamesArray.add("fil:ravaru_ikon_sasongsmat.png");
+			}
+		}
+*/
 		for (int i = 0; i < imgNamesArray.size(); i++) {
 			imgURLArray.add(parseImg(imgNamesArray.get(i)));
 		}
