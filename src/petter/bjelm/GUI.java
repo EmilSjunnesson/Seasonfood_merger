@@ -76,7 +76,8 @@ public class GUI extends JFrame {
 		data = new GetCategory();
 		parse = new Parse();
 		parse.setDate(parse.getCurrDate());
-		
+		parse.setZone("Z2");
+
 		JButton button = new JButton("Skaldjur");
 		button.setHorizontalTextPosition(SwingConstants.CENTER);
 		button.addActionListener(new ActionListener() {
@@ -95,13 +96,13 @@ public class GUI extends JFrame {
 
 					}
 				}
-				
+
 				try {
 					doc = parse.ParseDoc("Skaldjur");
 				} catch (Exception e8) {
 					e8.printStackTrace();
 				}
-				
+
 				try {
 					nameArray = data.getArray(doc);
 				} catch (Exception e) {
@@ -115,7 +116,7 @@ public class GUI extends JFrame {
 				}
 
 				for (int i = 0; i < URLArray.size(); i++) {
-					System.out.print(nameArray.get(i)+"\t");
+					System.out.print(nameArray.get(i) + "\t");
 					System.out.println(URLArray.get(i));
 				}
 
@@ -124,8 +125,8 @@ public class GUI extends JFrame {
 				for (i = 0; i < buttons.length; i++) {
 
 					buttons[i] = new JButton(
-							nameArray.get(i).replace('_', ' '),
-							new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
+							nameArray.get(i).replace('_', ' '), new ImageIcon(
+									URLImage.getURLImage(URLArray.get(i))));
 					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
 					buttons[i].setForeground(Color.WHITE);
 
@@ -236,40 +237,125 @@ public class GUI extends JFrame {
 		buttonTwo.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel = new JPanel();
 		panel.setBorder(null);
-		
-		JComboBox zoneComboBox = new JComboBox();
+
+		String[] zones = { "Välj zon", "Sydligaste Sverige", "Södra Sverige",
+				"Norra Sverige" };
+
+		JComboBox zoneComboBox = new JComboBox(zones);
+		zoneComboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				int index = monthComboBox.getSelectedIndex();
+
+				switch (index) {
+				case 0:
+					parse.setZone("Z2");
+					break;
+				case 1:
+					parse.setZone("Z3");
+					break;
+				case 2:
+					parse.setZone("Z2");
+					break;
+				case 3:
+					parse.setZone("Z1");
+					break;
+				default:
+					parse.setZone("Z2");
+					break;
+				}
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 934, Short.MAX_VALUE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(buttonTwo, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
-							.addGap(18)
-							.addComponent(button, GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(monthComboBox, GroupLayout.PREFERRED_SIZE, 716, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(zoneComboBox, 0, 200, Short.MAX_VALUE)))
-					.addContainerGap())
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(button, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(buttonTwo, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(monthComboBox, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(zoneComboBox, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 642, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
+		groupLayout
+				.setHorizontalGroup(groupLayout
+						.createParallelGroup(Alignment.LEADING)
+						.addGroup(
+								groupLayout
+										.createSequentialGroup()
+										.addContainerGap()
+										.addGroup(
+												groupLayout
+														.createParallelGroup(
+																Alignment.LEADING)
+														.addComponent(
+																panel,
+																GroupLayout.DEFAULT_SIZE,
+																934,
+																Short.MAX_VALUE)
+														.addGroup(
+																groupLayout
+																		.createSequentialGroup()
+																		.addComponent(
+																				buttonTwo,
+																				GroupLayout.DEFAULT_SIZE,
+																				458,
+																				Short.MAX_VALUE)
+																		.addGap(18)
+																		.addComponent(
+																				button,
+																				GroupLayout.DEFAULT_SIZE,
+																				458,
+																				Short.MAX_VALUE))
+														.addGroup(
+																groupLayout
+																		.createSequentialGroup()
+																		.addComponent(
+																				monthComboBox,
+																				GroupLayout.PREFERRED_SIZE,
+																				716,
+																				GroupLayout.PREFERRED_SIZE)
+																		.addGap(18)
+																		.addComponent(
+																				zoneComboBox,
+																				0,
+																				200,
+																				Short.MAX_VALUE)))
+										.addContainerGap()));
+		groupLayout
+				.setVerticalGroup(groupLayout
+						.createParallelGroup(Alignment.TRAILING)
+						.addGroup(
+								groupLayout
+										.createSequentialGroup()
+										.addContainerGap(
+												GroupLayout.DEFAULT_SIZE,
+												Short.MAX_VALUE)
+										.addGroup(
+												groupLayout
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																button,
+																GroupLayout.PREFERRED_SIZE,
+																25,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																buttonTwo,
+																GroupLayout.PREFERRED_SIZE,
+																25,
+																GroupLayout.PREFERRED_SIZE))
+										.addPreferredGap(
+												ComponentPlacement.UNRELATED)
+										.addGroup(
+												groupLayout
+														.createParallelGroup(
+																Alignment.BASELINE)
+														.addComponent(
+																monthComboBox,
+																GroupLayout.PREFERRED_SIZE,
+																25,
+																GroupLayout.PREFERRED_SIZE)
+														.addComponent(
+																zoneComboBox,
+																GroupLayout.PREFERRED_SIZE,
+																24,
+																GroupLayout.PREFERRED_SIZE))
+										.addGap(18)
+										.addComponent(panel,
+												GroupLayout.PREFERRED_SIZE,
+												642, GroupLayout.PREFERRED_SIZE)
+										.addContainerGap()));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setAutoCreateGaps(true);
 		gl_panel.setAutoCreateContainerGaps(true);
@@ -296,13 +382,13 @@ public class GUI extends JFrame {
 
 					}
 				}
-				
+
 				try {
 					doc = parse.ParseDoc("Grönsaker");
 				} catch (Exception e9) {
 					e9.printStackTrace();
 				}
-				
+
 				try {
 					nameArray = data.getArray(doc);
 				} catch (Exception e) {
@@ -325,8 +411,8 @@ public class GUI extends JFrame {
 				for (i = 0; i < buttons.length; i++) {
 
 					buttons[i] = new JButton(
-							nameArray.get(i).replace('_', ' '),
-							new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
+							nameArray.get(i).replace('_', ' '), new ImageIcon(
+									URLImage.getURLImage(URLArray.get(i))));
 					buttons[i].setHorizontalTextPosition(SwingConstants.CENTER);
 					buttons[i].setForeground(Color.WHITE);
 

@@ -13,7 +13,7 @@ public class Parse {
 
 	private String monthText = "00";
 	private String type = "Grönsaker";
-	private String zone = "Z3";
+	private String zone;
 	private Document doc;
 
 	public Parse() {
