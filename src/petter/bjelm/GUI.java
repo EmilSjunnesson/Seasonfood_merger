@@ -55,6 +55,10 @@ public class GUI extends JFrame {
 	private JLabel lblRvarorISsong;
 	private JLabel currentMonth;
 	private JLabel lblVljVisningEnligt;
+	private JButton btnFrukter;
+	private JButton btnRotfrukter;
+	private JButton btnKtt;
+	private JButton btnBr;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -141,6 +145,8 @@ public class GUI extends JFrame {
 		});
 
 		JButton greenButton = new JButton("Grönsaker");
+		greenButton.setIcon(new ImageIcon(GUI.class.getResource("/images/Gr\u00F6nsaker.jpg")));
+		greenButton.setForeground(Color.WHITE);
 		greenButton.setBounds(30, 266, 100, 100);
 		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
 
@@ -178,7 +184,9 @@ public class GUI extends JFrame {
 		getContentPane().add(monthComboBox);
 		getContentPane().add(zoneComboBox);
 		
-				JButton shellfishButton = new JButton("Skaldjur");
+				JButton shellfishButton = new JButton("Fisk & Skaldjur");
+				shellfishButton.setIcon(new ImageIcon(GUI.class.getResource("/images/fisk och skaldjur.jpg")));
+				shellfishButton.setForeground(Color.WHITE);
 				shellfishButton.setBounds(160, 266, 100, 100);
 				getContentPane().add(shellfishButton);
 				shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -188,6 +196,34 @@ public class GUI extends JFrame {
 					}
 
 				});
+		
+		btnFrukter = new JButton("Frukter");
+		btnFrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Frukt.jpg")));
+		btnFrukter.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnFrukter.setForeground(Color.WHITE);
+		btnFrukter.setBounds(30, 386, 100, 100);
+		getContentPane().add(btnFrukter);
+		
+		btnRotfrukter = new JButton("Rotfrukter");
+		btnRotfrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Rotfrukter.jpg")));
+		btnRotfrukter.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnRotfrukter.setForeground(Color.WHITE);
+		btnRotfrukter.setBounds(30, 497, 100, 100);
+		getContentPane().add(btnRotfrukter);
+		
+		btnKtt = new JButton("K\u00F6tt");
+		btnKtt.setIcon(new ImageIcon(GUI.class.getResource("/images/K\u00F6tt.jpg")));
+		btnKtt.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnKtt.setForeground(Color.WHITE);
+		btnKtt.setBounds(160, 497, 100, 100);
+		getContentPane().add(btnKtt);
+		
+		btnBr = new JButton("B\u00E4r");
+		btnBr.setIcon(new ImageIcon(GUI.class.getResource("/images/B\u00E4r.jpg")));
+		btnBr.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnBr.setForeground(Color.WHITE);
+		btnBr.setBounds(160, 386, 100, 100);
+		getContentPane().add(btnBr);
 		
 		lblKategorier = new JLabel("Kategorier");
 		lblKategorier.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
@@ -215,7 +251,7 @@ public class GUI extends JFrame {
 		scrollPane.setOpaque(false);
 		scrollPane.setViewportBorder(null);
 		scrollPane.getViewport().setOpaque(false);
-		scrollPane.setBounds(298, 266, 780, 466);
+		scrollPane.setBounds(298, 266, 790, 466);
 		getContentPane().add(scrollPane);
 		panel = new JPanel();
 		panel.setOpaque(false);
@@ -229,7 +265,7 @@ public class GUI extends JFrame {
 		);
 		
 		if(nrButtons==0){
-			panelHeight=600;
+			panelHeight=800;
 			System.out.println("NOLLL");
 		}else{
 			panelHeight=nrButtons/6*110;
@@ -317,7 +353,7 @@ public class GUI extends JFrame {
 			buttons[i].setForeground(Color.WHITE);
 
 			if (i == lastRow) {
-				rowY = rowY + buttonHeight;
+				rowY = rowY + buttonHeight+10;
 				lastRow = i + setButtonsPerRows;
 				// System.out.println(rowY + " Y");
 
