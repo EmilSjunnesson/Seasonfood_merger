@@ -34,6 +34,7 @@ public class GUI extends JFrame {
 	private int setButtonsPerRows = 6;
 	private int buttonCounter = 0;
 	private int nrButtons=0;
+	private String chosenCategory;
 	private GroupLayout gl_panel;
 	Document doc;
 	private Parse parse;
@@ -105,46 +106,75 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				int index = monthComboBox.getSelectedIndex();
+				
+				if(chosenCategory == null){
+					chosenCategory = "Grönsaker";
+				}
 
 				switch (index) {
 				case 0:
 					parse.setDate(parse.getCurrDate());
+					buttonLogic(chosenCategory);
 					break;
 				case 1:
 					parse.setDate("01");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Januari");
 					break;
 				case 2:
 					parse.setDate("02");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Februari");
 					break;
 				case 3:
 					parse.setDate("03");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Mars");
 					break;
 				case 4:
 					parse.setDate("04");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("April");
 					break;
 				case 5:
 					parse.setDate("05");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Maj");
 					break;
 				case 6:
 					parse.setDate("06");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Juni");
 					break;
 				case 7:
 					parse.setDate("07");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Juli");
 					break;
 				case 8:
 					parse.setDate("08");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Augusti");
 					break;
 				case 9:
 					parse.setDate("09");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("September");
 					break;
 				case 10:
 					parse.setDate("10");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("Oktober");
 					break;
 				case 11:
 					parse.setDate("11");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("November");
 					break;
 				case 12:
 					parse.setDate("12");
+					buttonLogic(chosenCategory);
+					currentMonth.setText("December");
 				default:
 					parse.setDate(parse.getCurrDate());
 					break;
@@ -167,19 +197,27 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				int index = zoneComboBox.getSelectedIndex();
+				
+				if(chosenCategory == null){
+					chosenCategory = "Grönsaker";
+				}
 
 				switch (index) {
 				case 0:
 					parse.setZone("Z2");
+					buttonLogic(chosenCategory);
 					break;
 				case 1:
 					parse.setZone("Z3");
+					buttonLogic(chosenCategory);
 					break;
 				case 2:
 					parse.setZone("Z2");
+					buttonLogic(chosenCategory);
 					break;
 				case 3:
 					parse.setZone("Z1");
+					buttonLogic(chosenCategory);
 					break;
 				default:
 					parse.setZone("Z2");
@@ -206,6 +244,11 @@ public class GUI extends JFrame {
 				});
 		
 		btnFrukter = new JButton("");
+		btnFrukter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				buttonLogic("Frukt");
+			}
+		});
 		btnFrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Frukt.jpg")));
 		btnFrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnFrukter.setForeground(Color.WHITE);
@@ -213,6 +256,11 @@ public class GUI extends JFrame {
 		getContentPane().add(btnFrukter);
 		
 		btnRotfrukter = new JButton("");
+		btnRotfrukter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buttonLogic("Rotsaker");
+			}
+		});
 		btnRotfrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Rotfrukter.jpg")));
 		btnRotfrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnRotfrukter.setForeground(Color.WHITE);
@@ -220,6 +268,11 @@ public class GUI extends JFrame {
 		getContentPane().add(btnRotfrukter);
 		
 		btnKtt = new JButton("");
+		btnKtt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buttonLogic("Kött");
+			}
+		});
 		btnKtt.setIcon(new ImageIcon(GUI.class.getResource("/images/K\u00F6tt.jpg")));
 		btnKtt.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnKtt.setForeground(Color.WHITE);
@@ -227,6 +280,11 @@ public class GUI extends JFrame {
 		getContentPane().add(btnKtt);
 		
 		btnBr = new JButton("");
+		btnBr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				buttonLogic("Bär");
+			}
+		});
 		btnBr.setIcon(new ImageIcon(GUI.class.getResource("/images/B\u00E4r.jpg")));
 		btnBr.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnBr.setForeground(Color.WHITE);
@@ -303,7 +361,7 @@ public class GUI extends JFrame {
 		);
 		
 		if(nrButtons==0){
-			panelHeight=800;
+			panelHeight=1500;
 			System.out.println("NOLLL");
 		}else{
 			panelHeight=nrButtons/6*110;
@@ -342,6 +400,7 @@ public class GUI extends JFrame {
 		lastRow = setButtonsPerRows;
 		rowX = 30;
 		buttonCounter = 0;
+		chosenCategory = category;
 		
 		
 		if (buttons != null) {
