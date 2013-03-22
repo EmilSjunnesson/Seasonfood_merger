@@ -101,7 +101,7 @@ public class GUI extends JFrame {
 				"Oktober", "November", "December", };
 
 		monthComboBox = new JComboBox(patternExamples);
-		monthComboBox.setBounds(1131, 303, 196, 25);
+		monthComboBox.setBounds(32, 303, 230, 25);
 		monthComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -185,14 +185,14 @@ public class GUI extends JFrame {
 		JButton greenButton = new JButton("");
 		greenButton.setIcon(new ImageIcon(GUI.class.getResource("/images/Gr\u00F6nsaker.jpg")));
 		greenButton.setForeground(Color.WHITE);
-		greenButton.setBounds(30, 265, 100, 100);
+		greenButton.setBounds(32, 350, 100, 100);
 		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
 
 		String[] zones = { "Välj zon", "Sydligaste Sverige", "Södra Sverige",
 				"Norra Sverige" };
 
 		zoneComboBox = new JComboBox(zones);
-		zoneComboBox.setBounds(1131, 266, 196, 24);
+		zoneComboBox.setBounds(32, 266, 230, 24);
 		zoneComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -233,7 +233,7 @@ public class GUI extends JFrame {
 				JButton shellfishButton = new JButton("");
 				shellfishButton.setIcon(new ImageIcon(GUI.class.getResource("/images/fisk och skaldjur.jpg")));
 				shellfishButton.setForeground(Color.WHITE);
-				shellfishButton.setBounds(160, 266, 100, 100);
+				shellfishButton.setBounds(162, 351, 100, 100);
 				getContentPane().add(shellfishButton);
 				shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
 				shellfishButton.addActionListener(new ActionListener() {
@@ -252,7 +252,7 @@ public class GUI extends JFrame {
 		btnFrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Frukt.jpg")));
 		btnFrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnFrukter.setForeground(Color.WHITE);
-		btnFrukter.setBounds(30, 397, 100, 100);
+		btnFrukter.setBounds(32, 482, 100, 100);
 		getContentPane().add(btnFrukter);
 		
 		btnRotfrukter = new JButton("");
@@ -264,7 +264,7 @@ public class GUI extends JFrame {
 		btnRotfrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Rotfrukter.jpg")));
 		btnRotfrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnRotfrukter.setForeground(Color.WHITE);
-		btnRotfrukter.setBounds(30, 529, 100, 100);
+		btnRotfrukter.setBounds(32, 614, 100, 100);
 		getContentPane().add(btnRotfrukter);
 		
 		btnKtt = new JButton("");
@@ -276,7 +276,7 @@ public class GUI extends JFrame {
 		btnKtt.setIcon(new ImageIcon(GUI.class.getResource("/images/K\u00F6tt.jpg")));
 		btnKtt.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnKtt.setForeground(Color.WHITE);
-		btnKtt.setBounds(160, 529, 100, 100);
+		btnKtt.setBounds(162, 614, 100, 100);
 		getContentPane().add(btnKtt);
 		
 		btnBr = new JButton("");
@@ -288,27 +288,27 @@ public class GUI extends JFrame {
 		btnBr.setIcon(new ImageIcon(GUI.class.getResource("/images/B\u00E4r.jpg")));
 		btnBr.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnBr.setForeground(Color.WHITE);
-		btnBr.setBounds(160, 397, 100, 100);
+		btnBr.setBounds(162, 482, 100, 100);
 		getContentPane().add(btnBr);
 		
 		lblKategorier = new JLabel("Kategorier");
-		lblKategorier.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
-		lblKategorier.setBounds(30, 224, 230, 31);
+		lblKategorier.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
+		lblKategorier.setBounds(32, 324, 230, 31);
 		getContentPane().add(lblKategorier);
 		
 		lblRvarorISsong = new JLabel("R\u00E5varor i s\u00E4song:");
-		lblRvarorISsong.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+		lblRvarorISsong.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lblRvarorISsong.setBounds(298, 224, 174, 31);
 		getContentPane().add(lblRvarorISsong);
 		
-		currentMonth = new JLabel("Mars");
-		currentMonth.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+		currentMonth = new JLabel("");
+		currentMonth.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		currentMonth.setBounds(471, 224, 118, 31);
 		getContentPane().add(currentMonth);
 		
 		lblVljVisningEnligt = new JLabel("Visa r\u00E5varor f\u00F6r:");
 		lblVljVisningEnligt.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
-		lblVljVisningEnligt.setBounds(1131, 224, 196, 31);
+		lblVljVisningEnligt.setBounds(32, 224, 196, 31);
 		getContentPane().add(lblVljVisningEnligt);
 		
 		scrollPane = new JScrollPane();
@@ -319,34 +319,44 @@ public class GUI extends JFrame {
 		scrollPane.getViewport().setOpaque(false);
 		
 		JLabel lblGrnsaker = new JLabel("Gr\u00F6nsaker");
-		lblGrnsaker.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
-		lblGrnsaker.setBounds(53, 368, 58, 16);
+		lblGrnsaker.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGrnsaker.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		lblGrnsaker.setBounds(32, 453, 100, 16);
 		getContentPane().add(lblGrnsaker);
 		
 		JLabel lblFiskSkaldjur = new JLabel("Fisk & Skaldjur");
-		lblFiskSkaldjur.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
-		lblFiskSkaldjur.setBounds(170, 368, 86, 16);
+		lblFiskSkaldjur.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFiskSkaldjur.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		lblFiskSkaldjur.setBounds(162, 453, 100, 16);
 		getContentPane().add(lblFiskSkaldjur);
 		
 		JLabel lblFrukter = new JLabel("Frukter");
-		lblFrukter.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
-		lblFrukter.setBounds(60, 500, 40, 16);
+		lblFrukter.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFrukter.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		lblFrukter.setBounds(32, 585, 100, 16);
 		getContentPane().add(lblFrukter);
 		
 		lblBr = new JLabel("B\u00E4r");
-		lblBr.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
-		lblBr.setBounds(200, 500, 19, 16);
+		lblBr.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBr.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		lblBr.setBounds(162, 585, 100, 16);
 		getContentPane().add(lblBr);
 		
 		lblRotfrukter = new JLabel("Rotfrukter");
-		lblRotfrukter.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
-		lblRotfrukter.setBounds(55, 631, 56, 16);
+		lblRotfrukter.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRotfrukter.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		lblRotfrukter.setBounds(34, 716, 98, 16);
 		getContentPane().add(lblRotfrukter);
 		
 		lblKtt = new JLabel("K\u00F6tt");
-		lblKtt.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
-		lblKtt.setBounds(200, 631, 23, 16);
+		lblKtt.setHorizontalAlignment(SwingConstants.CENTER);
+		lblKtt.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		lblKtt.setBounds(162, 716, 100, 16);
 		getContentPane().add(lblKtt);
+		
+		MyLine myLine = new MyLine();
+		myLine.setBounds(282, 266, 6, 466);
+		getContentPane().add(myLine);
 		scrollPane.setBounds(298, 266, 790, 466);
 		getContentPane().add(scrollPane);
 		panel = new JPanel();
