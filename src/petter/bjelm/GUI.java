@@ -238,7 +238,7 @@ public class GUI extends JFrame {
 				shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
 				shellfishButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg1) {
-						buttonLogic("Skaldjur");
+						buttonLogic("Fisk_och_skaldjur");
 					}
 
 				});
