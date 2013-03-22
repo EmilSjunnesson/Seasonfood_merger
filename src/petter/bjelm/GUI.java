@@ -387,7 +387,7 @@ public class GUI extends JFrame {
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1366, 768);
-		setResizable(false);
+		setResizable(true);
 		setVisible(true);
 	}
 
