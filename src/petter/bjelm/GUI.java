@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
 
 import java.util.ArrayList;
@@ -402,6 +403,8 @@ public class GUI extends JFrame {
 		buttonCounter = 0;
 		chosenCategory = category;
 		
+		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+		verticalScrollBar.setValue(verticalScrollBar.getMinimum());
 		
 		if (buttons != null) {
 			nrButtons=buttons.length;
