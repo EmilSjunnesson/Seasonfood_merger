@@ -349,7 +349,7 @@ public class GUI extends JFrame {
 		lblKtt.setFont(new Font("Franklin Gothic Medium", Font.PLAIN, 13));
 		lblKtt.setBounds(200, 631, 23, 16);
 		getContentPane().add(lblKtt);
-		scrollPane.setBounds(298, 266, 790, 466);
+		scrollPane.setBounds(298, 266, 790, 419);
 		getContentPane().add(scrollPane);
 		panel = new JPanel();
 		panel.setOpaque(false);
