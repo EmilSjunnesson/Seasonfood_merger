@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.SwingConstants;
 
 import java.util.ArrayList;
@@ -33,12 +34,12 @@ public class GUI extends JFrame {
 	private int rowY = 0;
 	private int setButtonsPerRows = 6;
 	private int buttonCounter = 0;
-	private int nrButtons=0;
+	private int nrButtons = 0;
 	private String chosenCategory;
 	private GroupLayout gl_panel;
 	Document doc;
 	private Parse parse;
-	private int panelHeight=0;
+	private int panelHeight = 0;
 	private ArrayList<String> nameArray;
 	private ArrayList<JButton> buttonArray;
 	private ArrayList<JLabel> labelArray;
@@ -106,8 +107,8 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				int index = monthComboBox.getSelectedIndex();
-				
-				if(chosenCategory == null){
+
+				if (chosenCategory == null) {
 					chosenCategory = "Grönsaker";
 				}
 
@@ -183,7 +184,8 @@ public class GUI extends JFrame {
 		});
 
 		JButton greenButton = new JButton("");
-		greenButton.setIcon(new ImageIcon(GUI.class.getResource("/images/Gr\u00F6nsaker.jpg")));
+		greenButton.setIcon(new ImageIcon(GUI.class
+				.getResource("/images/Gr\u00F6nsaker.jpg")));
 		greenButton.setForeground(Color.WHITE);
 		greenButton.setBounds(32, 350, 100, 100);
 		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -197,8 +199,8 @@ public class GUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				int index = zoneComboBox.getSelectedIndex();
-				
-				if(chosenCategory == null){
+
+				if (chosenCategory == null) {
 					chosenCategory = "Grönsaker";
 				}
 
@@ -229,131 +231,138 @@ public class GUI extends JFrame {
 		getContentPane().add(greenButton);
 		getContentPane().add(monthComboBox);
 		getContentPane().add(zoneComboBox);
-		
-				JButton shellfishButton = new JButton("");
-				shellfishButton.setIcon(new ImageIcon(GUI.class.getResource("/images/fisk och skaldjur.jpg")));
-				shellfishButton.setForeground(Color.WHITE);
-				shellfishButton.setBounds(162, 351, 100, 100);
-				getContentPane().add(shellfishButton);
-				shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
-				shellfishButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg1) {
-						buttonLogic("Fisk_och_skaldjur");
-					}
 
-				});
-		
+		JButton shellfishButton = new JButton("");
+		shellfishButton.setIcon(new ImageIcon(GUI.class
+				.getResource("/images/fisk och skaldjur.jpg")));
+		shellfishButton.setForeground(Color.WHITE);
+		shellfishButton.setBounds(162, 351, 100, 100);
+		getContentPane().add(shellfishButton);
+		shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		shellfishButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg1) {
+				buttonLogic("Fisk_och_skaldjur");
+			}
+
+		});
+
 		btnFrukter = new JButton("");
 		btnFrukter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				buttonLogic("Frukt");
 			}
 		});
-		btnFrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Frukt.jpg")));
+		btnFrukter.setIcon(new ImageIcon(GUI.class
+				.getResource("/images/Frukt.jpg")));
 		btnFrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnFrukter.setForeground(Color.WHITE);
 		btnFrukter.setBounds(32, 482, 100, 100);
 		getContentPane().add(btnFrukter);
-		
+
 		btnRotfrukter = new JButton("");
 		btnRotfrukter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonLogic("Rotsaker");
 			}
 		});
-		btnRotfrukter.setIcon(new ImageIcon(GUI.class.getResource("/images/Rotfrukter.jpg")));
+		btnRotfrukter.setIcon(new ImageIcon(GUI.class
+				.getResource("/images/Rotfrukter.jpg")));
 		btnRotfrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnRotfrukter.setForeground(Color.WHITE);
 		btnRotfrukter.setBounds(32, 614, 100, 100);
 		getContentPane().add(btnRotfrukter);
-		
+
 		btnKtt = new JButton("");
 		btnKtt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonLogic("Kött");
 			}
 		});
-		btnKtt.setIcon(new ImageIcon(GUI.class.getResource("/images/K\u00F6tt.jpg")));
+		btnKtt.setIcon(new ImageIcon(GUI.class
+				.getResource("/images/K\u00F6tt.jpg")));
 		btnKtt.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnKtt.setForeground(Color.WHITE);
 		btnKtt.setBounds(162, 614, 100, 100);
 		getContentPane().add(btnKtt);
-		
+
 		btnBr = new JButton("");
 		btnBr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonLogic("Bär");
 			}
 		});
-		btnBr.setIcon(new ImageIcon(GUI.class.getResource("/images/B\u00E4r.jpg")));
+		btnBr.setIcon(new ImageIcon(GUI.class
+				.getResource("/images/B\u00E4r.jpg")));
 		btnBr.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnBr.setForeground(Color.WHITE);
 		btnBr.setBounds(162, 482, 100, 100);
 		getContentPane().add(btnBr);
-		
+
 		lblKategorier = new JLabel("Kategorier");
 		lblKategorier.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
 		lblKategorier.setBounds(32, 324, 230, 31);
 		getContentPane().add(lblKategorier);
-		
+
 		lblRvarorISsong = new JLabel("R\u00E5varor i s\u00E4song:");
 		lblRvarorISsong.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lblRvarorISsong.setBounds(298, 224, 174, 31);
 		getContentPane().add(lblRvarorISsong);
-		
+
 		currentMonth = new JLabel("");
 		currentMonth.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		currentMonth.setBounds(471, 224, 118, 31);
 		getContentPane().add(currentMonth);
-		
+
 		lblVljVisningEnligt = new JLabel("Visa r\u00E5varor f\u00F6r:");
-		lblVljVisningEnligt.setFont(new Font("Franklin Gothic Medium", Font.BOLD, 20));
+		lblVljVisningEnligt.setFont(new Font("Franklin Gothic Medium",
+				Font.BOLD, 20));
 		lblVljVisningEnligt.setBounds(32, 224, 196, 31);
 		getContentPane().add(lblVljVisningEnligt);
-		
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane
+				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setOpaque(false);
 		scrollPane.setViewportBorder(null);
 		scrollPane.getViewport().setOpaque(false);
-		
+
 		JLabel lblGrnsaker = new JLabel("Gr\u00F6nsaker");
 		lblGrnsaker.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGrnsaker.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblGrnsaker.setBounds(32, 453, 100, 16);
 		getContentPane().add(lblGrnsaker);
-		
+
 		JLabel lblFiskSkaldjur = new JLabel("Fisk & Skaldjur");
 		lblFiskSkaldjur.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFiskSkaldjur.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblFiskSkaldjur.setBounds(162, 453, 100, 16);
 		getContentPane().add(lblFiskSkaldjur);
-		
+
 		JLabel lblFrukter = new JLabel("Frukter");
 		lblFrukter.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFrukter.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblFrukter.setBounds(32, 585, 100, 16);
 		getContentPane().add(lblFrukter);
-		
+
 		lblBr = new JLabel("B\u00E4r");
 		lblBr.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBr.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblBr.setBounds(162, 585, 100, 16);
 		getContentPane().add(lblBr);
-		
+
 		lblRotfrukter = new JLabel("Rotfrukter");
 		lblRotfrukter.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRotfrukter.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblRotfrukter.setBounds(34, 716, 98, 16);
 		getContentPane().add(lblRotfrukter);
-		
+
 		lblKtt = new JLabel("K\u00F6tt");
 		lblKtt.setHorizontalAlignment(SwingConstants.CENTER);
 		lblKtt.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblKtt.setBounds(162, 716, 100, 16);
 		getContentPane().add(lblKtt);
-		
+
 		MyLine myLine = new MyLine();
 		myLine.setBounds(282, 266, 6, 466);
 		getContentPane().add(myLine);
@@ -363,31 +372,27 @@ public class GUI extends JFrame {
 		panel.setOpaque(false);
 		scrollPane.setViewportView(panel);
 		panel.setBorder(null);
-		
+
 		gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 840, Short.MAX_VALUE)
-		);
-		
-		if(nrButtons==0){
-			panelHeight=1500;
+		gl_panel.setHorizontalGroup(gl_panel.createParallelGroup(
+				Alignment.LEADING).addGap(0, 840, Short.MAX_VALUE));
+
+		if (nrButtons == 0) {
+			panelHeight = 1500;
 			System.out.println("NOLLL");
-		}else{
-			panelHeight=nrButtons/6*110;
-			System.out.println("HÖJD: "+panelHeight);
+		} else {
+			panelHeight = nrButtons / 6 * 110;
+			System.out.println("HÖJD: " + panelHeight);
 		}
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGap(0,panelHeight, Short.MAX_VALUE)
-		);
-		
+		gl_panel.setVerticalGroup(gl_panel.createParallelGroup(
+				Alignment.LEADING).addGap(0, panelHeight, Short.MAX_VALUE));
 
 		panel.setLayout(gl_panel);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 1366, 768);
-		lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/images/Bakgrund morotter.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(GUI.class
+				.getResource("/images/Bakgrund morotter.jpg")));
 		getContentPane().add(lblNewLabel);
 
 		greenButton.addActionListener(new ActionListener() {
@@ -411,10 +416,12 @@ public class GUI extends JFrame {
 		rowX = 30;
 		buttonCounter = 0;
 		chosenCategory = category;
-		
-		
+
+		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
+		verticalScrollBar.setValue(verticalScrollBar.getMinimum());
+
 		if (buttons != null) {
-			nrButtons=buttons.length;
+			nrButtons = buttons.length;
 			for (i = 0; i < buttons.length; i++) {
 
 				panel.remove(buttons[i]);
@@ -454,16 +461,17 @@ public class GUI extends JFrame {
 
 		buttons = new JButton[nameArray.size()];
 		labels = new JLabel[nameArray.size()];
-		
+
 		for (i = 0; i < buttons.length; i++) {
 			buttons[i] = new JButton(nameArray.get(i).replace('_', ' '),
 					new ImageIcon(URLImage.getURLImage(URLArray.get(i))));
-			
-			labels[i] = new JLabel(nameArray.get(i).replace('_', ' '), JLabel.CENTER);
+
+			labels[i] = new JLabel(nameArray.get(i).replace('_', ' '),
+					JLabel.CENTER);
 			labels[i].setForeground(Color.BLACK);
 
 			if (i == lastRow) {
-				rowY = rowY + buttonHeight+20;
+				rowY = rowY + buttonHeight + 20;
 				lastRow = i + setButtonsPerRows;
 				// System.out.println(rowY + " Y");
 
@@ -477,19 +485,19 @@ public class GUI extends JFrame {
 
 				buttons[i].setBounds((buttonWidth * buttonCounter), rowY,
 						buttonWidth, buttonHeight);
-				
-				labels[i].setBounds((buttonWidth * buttonCounter), rowY+120,
+
+				labels[i].setBounds((buttonWidth * buttonCounter), rowY + 120,
 						labelWidth, labelHeight);
-				
+
 			} else {
 
 				buttons[i].setBounds(
 						(buttonWidth * buttonCounter + 10 * buttonCounter),
 						rowY, buttonWidth, buttonHeight);
-				
+
 				labels[i].setBounds(
 						(buttonWidth * buttonCounter + 10 * buttonCounter),
-						rowY+120, labelWidth, labelHeight);
+						rowY + 120, labelWidth, labelHeight);
 			}
 
 			buttonCounter++;
@@ -512,9 +520,10 @@ public class GUI extends JFrame {
 			panel.revalidate();
 			validate();
 			panel.repaint();
-	
+
 		}
 	}
+
 	public JPanel getPanel() {
 		return panel;
 	}
