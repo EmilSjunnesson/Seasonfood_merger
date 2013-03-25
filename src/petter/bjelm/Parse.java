@@ -12,10 +12,11 @@ import org.w3c.dom.Document;
 public class Parse {
 
 	private String monthText = "00";
+	private int monthNumber;
 	private String type = "Grönsaker";
 	private String zone;
 	private Document doc;
-
+	private int month;
 	public Parse() {
 
 	}
@@ -41,7 +42,7 @@ public class Parse {
 	// * Ändrar URL till dagens datum */
 	public String getCurrDate() {
 		Calendar cal = Calendar.getInstance();
-		int month = cal.get(Calendar.MONTH) + 1;
+		month = cal.get(Calendar.MONTH) + 1;
 		if (month < 10) {
 			monthText = "0" + Integer.toString(month);
 		} else {
@@ -56,5 +57,16 @@ public class Parse {
 
 	public void setZone(String area) {
 		zone = area;
+	}
+	
+	public int getDate(){
+		int newMonth;
+		if (Integer.parseInt(monthText) < 10) {
+			newMonth = Integer.parseInt( monthText);
+		} else {
+			newMonth = Integer.parseInt(monthText);
+		}
+		
+	return newMonth;
 	}
 }
