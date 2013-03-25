@@ -31,6 +31,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.EtchedBorder;
 import java.awt.ComponentOrientation;
 import javax.swing.border.CompoundBorder;
+import java.awt.Toolkit;
 
 public class GUI extends JFrame {
 
@@ -96,6 +97,8 @@ public class GUI extends JFrame {
 
 	public GUI() {
 		super("Add component on JFrame at runtime");
+		setTitle("S\u00E4songsr\u00E5varor 1.0");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/icon.png")));
 
 		nameArray = new ArrayList<String>();
 		buttonArray = new ArrayList<JButton>();
@@ -113,20 +116,23 @@ public class GUI extends JFrame {
 				"Mars", "April", "Maj", "Juni", "Juli", "Augusti", "September",
 				"Oktober", "November", "December", };
 		
+		
+		// gets current month and converts to INT to get month string from patterExamples
 		if (Integer.parseInt(parse.getCurrDate())<10){
 			monthNow=patternExamples[Integer.parseInt(parse.getCurrDate().substring(1,2))];
 		}else{
 			monthNow=patternExamples[Integer.parseInt(parse.getCurrDate())];			
 		}
 		
-		System.out.println(patternExamples[Integer.parseInt(parse.getCurrDate().substring(1,2))]);
 		
+		//Create combobox for months and add case selections
 		monthComboBox = new JComboBox(patternExamples);
 		monthComboBox.setBounds(20, 261, 220, 25);
 		monthComboBox.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				//titleTextTop.setText(chosenCategory+" i säsong under " + patternExamples[monthComboBox.getSelectedIndex()]);
+				
+				
 				
 				int index = monthComboBox.getSelectedIndex();
 				
@@ -142,29 +148,34 @@ public class GUI extends JFrame {
 					break;
 				case 1:
 					parse.setDate("01");
-					buttonLogic(chosenCategory);
 					monthNow="Januari";
+					buttonLogic(chosenCategory);
+					
 					break;
 				case 2:
 					parse.setDate("02");
-					buttonLogic(chosenCategory);
+					
 					monthNow="Februari";
+					buttonLogic(chosenCategory);
 					break;
 				case 3:
 					parse.setDate("03");
-					buttonLogic(chosenCategory);
+					
 					monthNow="Mars";
+					buttonLogic(chosenCategory);
 					break;
 				case 4:
 					parse.setDate("04");
-					buttonLogic(chosenCategory);
+					
 					
 					monthNow="April";
+					buttonLogic(chosenCategory);
 					break;
 				case 5:
 					parse.setDate("05");
-					buttonLogic(chosenCategory);
+					
 					monthNow="Maj";
+					buttonLogic(chosenCategory);
 					break;
 				case 6:
 					parse.setDate("06");
@@ -173,49 +184,50 @@ public class GUI extends JFrame {
 					break;
 				case 7:
 					parse.setDate("07");
-					buttonLogic(chosenCategory);
+					
 					monthNow="Juli";
+					buttonLogic(chosenCategory);
 					break;
 				case 8:
 					parse.setDate("08");
-					buttonLogic(chosenCategory);
 					monthNow="Augusti";
+					buttonLogic(chosenCategory);
+					
 					break;
 				case 9:
 					parse.setDate("09");
-					buttonLogic(chosenCategory);
+					
 					monthNow="September";
+					buttonLogic(chosenCategory);
 					break;
 				case 10:
 					parse.setDate("10");
-					buttonLogic(chosenCategory);
 					monthNow="Oktober";
+					buttonLogic(chosenCategory);
+					
 					break;
 				case 11:
 					parse.setDate("11");
-					buttonLogic(chosenCategory);
 					monthNow="November";
+					buttonLogic(chosenCategory);
+					
 					break;
 				case 12:
 					parse.setDate("12");
-					buttonLogic(chosenCategory);
 					monthNow="December";
+					buttonLogic(chosenCategory);
+					
 				default:
 					parse.setDate(parse.getCurrDate());
 
 					break;
 					
 				}
-				titleTextTop.setText(chosenCategory.replace('_', ' ')+" i säsong under " + monthNow);
+				
 			}
 		});
 
-		JButton greenButton = new JButton("");
-		greenButton.setIcon(new ImageIcon(GUI.class
-				.getResource("/images/Gr\u00F6nsaker.jpg")));
-		greenButton.setForeground(Color.WHITE);
-		greenButton.setBounds(20, 321, 100, 100);
-		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
+
 
 		String[] zones = { "Välj zon", "Sydligaste Sverige", "Södra Sverige",
 				"Norra Sverige" };
@@ -224,7 +236,8 @@ public class GUI extends JFrame {
 		zoneComboBox.setBounds(20, 224, 220, 24);
 		zoneComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				titleTextTop.setText(chosenCategory+" i säsong under " + patternExamples[monthComboBox.getSelectedIndex()]);
+				
+				//titleTextTop.setText(chosenCategory.replace("_", " ")+" i säsong under " + patternExamples[monthComboBox.getSelectedIndex()]);
 				int index = zoneComboBox.getSelectedIndex();
 
 				if (chosenCategory == null) {
@@ -252,13 +265,23 @@ public class GUI extends JFrame {
 					parse.setZone("Z2");
 					break;
 				}
+				
 			}
 		});
+
+		
 		getContentPane().setLayout(null);
-		getContentPane().add(greenButton);
 		getContentPane().add(monthComboBox);
 		getContentPane().add(zoneComboBox);
 
+		
+		JButton greenButton = new JButton("");
+		greenButton.setIcon(new ImageIcon(GUI.class.getResource("/images/Gr\u00F6nsaker.jpg")));
+		greenButton.setForeground(Color.WHITE);
+		greenButton.setBounds(20, 321, 100, 100);
+		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
+		getContentPane().add(greenButton);
+		
 		JButton shellfishButton = new JButton("");
 		shellfishButton.setIcon(new ImageIcon(GUI.class
 				.getResource("/images/fisk och skaldjur.jpg")));
@@ -269,7 +292,7 @@ public class GUI extends JFrame {
 		shellfishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg1) {
 				buttonLogic("Fisk_och_skaldjur");
-				titleTextTop.setText("Fisk och skaldjur i säsong under " + monthNow);
+				
 				
 			}
 
@@ -279,7 +302,7 @@ public class GUI extends JFrame {
 		btnFrukter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				buttonLogic("Frukt");
-				titleTextTop.setText(chosenCategory+" i säsong under " + monthNow);
+				
 			}
 		});
 		btnFrukter.setIcon(new ImageIcon(GUI.class
@@ -293,7 +316,7 @@ public class GUI extends JFrame {
 		btnRotfrukter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonLogic("Rotsaker");
-				titleTextTop.setText(chosenCategory+" i säsong under " + monthNow);
+				
 			}
 		});
 		btnRotfrukter.setIcon(new ImageIcon(GUI.class
@@ -307,7 +330,7 @@ public class GUI extends JFrame {
 		btnKtt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonLogic("Kött");
-				titleTextTop.setText(chosenCategory+" i säsong under " + monthNow);
+				
 			}
 		});
 		btnKtt.setIcon(new ImageIcon(GUI.class
@@ -321,7 +344,7 @@ public class GUI extends JFrame {
 		btnBr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				buttonLogic("Bär");
-				titleTextTop.setText(chosenCategory+" i säsong under " + monthNow);
+				
 			}
 		});
 		btnBr.setIcon(new ImageIcon(GUI.class
@@ -350,9 +373,9 @@ public class GUI extends JFrame {
 		getContentPane().add(lblVljVisningEnligt);
 
 		scrollPane = new JScrollPane();
+		scrollPane.setVisible(false);
 		scrollPane.setBorder(null);
-		scrollPane
-				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.setOpaque(false);
 		scrollPane.setViewportBorder(null);
@@ -441,7 +464,7 @@ public class GUI extends JFrame {
 		greenButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				buttonLogic("Grönsaker");
-				titleTextTop.setText(chosenCategory+" i säsong under " + monthNow);
+				
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -454,7 +477,9 @@ public class GUI extends JFrame {
 		return monthComboBox;
 	}
 
+	// Creates buttons representing the search result depending on chosen category and month
 	public void buttonLogic(String category) {
+		scrollPane.setVisible(true);
 		rowY = 0;
 		lastRow = setButtonsPerRows;
 		rowX = 30;
@@ -463,6 +488,7 @@ public class GUI extends JFrame {
 		
 		start.setText("");
 		
+		//Reset scrollbar to top position
 		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
 		verticalScrollBar.setValue(verticalScrollBar.getMinimum());
 
@@ -507,9 +533,11 @@ public class GUI extends JFrame {
 		}
 		
 		if (nameArray.isEmpty()) {
+			scrollPane.setVisible(false);
 			info.setText("Hittade inget i säsong för den valda kategorien: "+chosenCategory);
 			info.setOpaque(true);
 		}else{
+			
 			info.setText("");
 			info.setOpaque(false);
 		}
@@ -570,8 +598,7 @@ public class GUI extends JFrame {
 			buttons[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String choice = e.getActionCommand();
-					JOptionPane.showMessageDialog(null, "You have clicked: "
-							+ choice);
+					JOptionPane.showMessageDialog(null, "Råvaran "+ choice + " är i säsong\nI nästa uppdatering av Säsongsråvaror \nkommer det finnas mer information om råvaran.");
 				}
 			});
 
@@ -582,9 +609,9 @@ public class GUI extends JFrame {
 			panel.repaint();
 
 		}
+		//Set title on search area
+		titleTextTop.setText(chosenCategory.replace("_", " ")+" i säsong under " + monthNow);
 	}
 
-	public JPanel getPanel() {
-		return panel;
-	}
+
 }
