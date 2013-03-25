@@ -76,6 +76,7 @@ public class GUI extends JFrame {
 	private JLabel lblBr;
 	private JLabel lblRotfrukter;
 	private JLabel lblKtt;
+	private JLabel info;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -204,7 +205,7 @@ public class GUI extends JFrame {
 					break;
 					
 				}
-				titleTextTop.setText(chosenCategory+" i säsong under " + monthNow);
+				titleTextTop.setText(chosenCategory.replace('_', ' ')+" i säsong under " + monthNow);
 			}
 		});
 
@@ -391,6 +392,11 @@ public class GUI extends JFrame {
 		lblKtt.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
 		lblKtt.setBounds(140, 687, 100, 16);
 		getContentPane().add(lblKtt);
+		
+		info = new JLabel("info");
+		info.setHorizontalAlignment(SwingConstants.CENTER);
+		info.setBounds(270, 225, 722, 478);
+		getContentPane().add(info);
 
 		MyLine myLine = new MyLine();
 		myLine.setBounds(254, 224, 9, 479);
@@ -487,6 +493,12 @@ public class GUI extends JFrame {
 			if (URLArray.get(i) == null) {
 				URLArray.set(i, "http://beta.glorious.se/Ravaru_ikon_sasongsmat.png");
 			}
+		}
+		
+		if (nameArray.isEmpty()) {
+			info.setText("HJÄLP");
+		}else{
+			info.setText("");
 		}
 		
 		for (int i = 0; i < URLArray.size(); i++) {
