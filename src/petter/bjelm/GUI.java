@@ -323,6 +323,7 @@ public class GUI extends JFrame {
 		scrollPane.setBorder(null);
 		scrollPane
 				.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 		scrollPane.setOpaque(false);
 		scrollPane.setViewportBorder(null);
 		scrollPane.getViewport().setOpaque(false);
