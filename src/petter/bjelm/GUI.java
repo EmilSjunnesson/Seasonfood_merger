@@ -461,7 +461,13 @@ public class GUI extends JFrame {
 		if (nameArray.size() != URLArray.size()) {
 			nameArray.remove(nameArray.indexOf("Svedjerova"));
 		}
-
+		
+		for (int i = 0; i < nameArray.size(); i++) {
+			if (URLArray.get(i) == null) {
+				URLArray.set(i, "http://xn--ssongsmat-v2a.nu/w/images/4/4c/Ravaru_ikon_sasongsmat.png");
+			}
+		}
+		
 		for (int i = 0; i < URLArray.size(); i++) {
 			System.out.print(nameArray.get(i) + "\t");
 			System.out.println(URLArray.get(i));
