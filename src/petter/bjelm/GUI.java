@@ -32,7 +32,7 @@ public class GUI extends JFrame {
 	private int lastRow = 0;
 	private int rowX = 0;
 	private int rowY = 0;
-	private int setButtonsPerRows = 6;
+	private int setButtonsPerRows = 5;
 	private int buttonCounter = 0;
 	private int nrButtons = 0;
 	private String chosenCategory;
@@ -52,10 +52,10 @@ public class GUI extends JFrame {
 	private JComboBox zoneComboBox;
 	private GetImgFromURL URLImage;
 
-	private int buttonWidth = 120;
-	private int buttonHeight = 120;
-	private int labelWidth = 120;
-	private int labelHeight = 20;
+	private int buttonWidth = 130;
+	private int buttonHeight = 130;
+	private int labelWidth = 130;
+	private int labelHeight = 36;
 	private JScrollPane scrollPane;
 	private JLabel lblKategorier;
 	private JLabel lblRvarorISsong;
@@ -102,7 +102,7 @@ public class GUI extends JFrame {
 				"Oktober", "November", "December", };
 
 		monthComboBox = new JComboBox(patternExamples);
-		monthComboBox.setBounds(32, 303, 230, 25);
+		monthComboBox.setBounds(20, 303, 230, 25);
 		monthComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -187,14 +187,14 @@ public class GUI extends JFrame {
 		greenButton.setIcon(new ImageIcon(GUI.class
 				.getResource("/images/Gr\u00F6nsaker.jpg")));
 		greenButton.setForeground(Color.WHITE);
-		greenButton.setBounds(32, 350, 100, 100);
+		greenButton.setBounds(20, 350, 100, 100);
 		greenButton.setHorizontalTextPosition(SwingConstants.CENTER);
 
 		String[] zones = { "Välj zon", "Sydligaste Sverige", "Södra Sverige",
 				"Norra Sverige" };
 
 		zoneComboBox = new JComboBox(zones);
-		zoneComboBox.setBounds(32, 266, 230, 24);
+		zoneComboBox.setBounds(20, 266, 230, 24);
 		zoneComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -236,7 +236,7 @@ public class GUI extends JFrame {
 		shellfishButton.setIcon(new ImageIcon(GUI.class
 				.getResource("/images/fisk och skaldjur.jpg")));
 		shellfishButton.setForeground(Color.WHITE);
-		shellfishButton.setBounds(162, 351, 100, 100);
+		shellfishButton.setBounds(150, 351, 100, 100);
 		getContentPane().add(shellfishButton);
 		shellfishButton.setHorizontalTextPosition(SwingConstants.CENTER);
 		shellfishButton.addActionListener(new ActionListener() {
@@ -256,7 +256,7 @@ public class GUI extends JFrame {
 				.getResource("/images/Frukt.jpg")));
 		btnFrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnFrukter.setForeground(Color.WHITE);
-		btnFrukter.setBounds(32, 482, 100, 100);
+		btnFrukter.setBounds(20, 482, 100, 100);
 		getContentPane().add(btnFrukter);
 
 		btnRotfrukter = new JButton("");
@@ -269,7 +269,7 @@ public class GUI extends JFrame {
 				.getResource("/images/Rotfrukter.jpg")));
 		btnRotfrukter.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnRotfrukter.setForeground(Color.WHITE);
-		btnRotfrukter.setBounds(32, 614, 100, 100);
+		btnRotfrukter.setBounds(20, 614, 100, 100);
 		getContentPane().add(btnRotfrukter);
 
 		btnKtt = new JButton("");
@@ -282,7 +282,7 @@ public class GUI extends JFrame {
 				.getResource("/images/K\u00F6tt.jpg")));
 		btnKtt.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnKtt.setForeground(Color.WHITE);
-		btnKtt.setBounds(162, 614, 100, 100);
+		btnKtt.setBounds(150, 614, 100, 100);
 		getContentPane().add(btnKtt);
 
 		btnBr = new JButton("");
@@ -295,17 +295,17 @@ public class GUI extends JFrame {
 				.getResource("/images/B\u00E4r.jpg")));
 		btnBr.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnBr.setForeground(Color.WHITE);
-		btnBr.setBounds(162, 482, 100, 100);
+		btnBr.setBounds(150, 482, 100, 100);
 		getContentPane().add(btnBr);
 
 		lblKategorier = new JLabel("Kategorier");
 		lblKategorier.setFont(new Font("Trebuchet MS", Font.BOLD, 12));
-		lblKategorier.setBounds(32, 324, 230, 31);
+		lblKategorier.setBounds(20, 324, 230, 31);
 		getContentPane().add(lblKategorier);
 
 		lblRvarorISsong = new JLabel("R\u00E5varor i s\u00E4song:");
 		lblRvarorISsong.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblRvarorISsong.setBounds(298, 224, 174, 31);
+		lblRvarorISsong.setBounds(279, 224, 174, 31);
 		getContentPane().add(lblRvarorISsong);
 
 		currentMonth = new JLabel("");
@@ -316,7 +316,7 @@ public class GUI extends JFrame {
 		lblVljVisningEnligt = new JLabel("Visa r\u00E5varor f\u00F6r:");
 		lblVljVisningEnligt.setFont(new Font("Franklin Gothic Medium",
 				Font.BOLD, 20));
-		lblVljVisningEnligt.setBounds(32, 224, 196, 31);
+		lblVljVisningEnligt.setBounds(20, 224, 196, 31);
 		getContentPane().add(lblVljVisningEnligt);
 
 		scrollPane = new JScrollPane();
@@ -331,43 +331,43 @@ public class GUI extends JFrame {
 		JLabel lblGrnsaker = new JLabel("Gr\u00F6nsaker");
 		lblGrnsaker.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGrnsaker.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
-		lblGrnsaker.setBounds(32, 453, 100, 16);
+		lblGrnsaker.setBounds(20, 453, 100, 16);
 		getContentPane().add(lblGrnsaker);
 
 		JLabel lblFiskSkaldjur = new JLabel("Fisk & Skaldjur");
 		lblFiskSkaldjur.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFiskSkaldjur.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
-		lblFiskSkaldjur.setBounds(162, 453, 100, 16);
+		lblFiskSkaldjur.setBounds(150, 453, 100, 16);
 		getContentPane().add(lblFiskSkaldjur);
 
 		JLabel lblFrukter = new JLabel("Frukter");
 		lblFrukter.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFrukter.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
-		lblFrukter.setBounds(32, 585, 100, 16);
+		lblFrukter.setBounds(20, 585, 100, 16);
 		getContentPane().add(lblFrukter);
 
 		lblBr = new JLabel("B\u00E4r");
 		lblBr.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBr.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
-		lblBr.setBounds(162, 585, 100, 16);
+		lblBr.setBounds(150, 585, 100, 16);
 		getContentPane().add(lblBr);
 
 		lblRotfrukter = new JLabel("Rotfrukter");
 		lblRotfrukter.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRotfrukter.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
-		lblRotfrukter.setBounds(34, 716, 98, 16);
+		lblRotfrukter.setBounds(22, 716, 98, 16);
 		getContentPane().add(lblRotfrukter);
 
 		lblKtt = new JLabel("K\u00F6tt");
 		lblKtt.setHorizontalAlignment(SwingConstants.CENTER);
 		lblKtt.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
-		lblKtt.setBounds(162, 716, 100, 16);
+		lblKtt.setBounds(150, 716, 100, 16);
 		getContentPane().add(lblKtt);
 
 		MyLine myLine = new MyLine();
-		myLine.setBounds(282, 266, 6, 466);
+		myLine.setBounds(263, 266, 6, 466);
 		getContentPane().add(myLine);
-		scrollPane.setBounds(298, 266, 790, 466);
+		scrollPane.setBounds(279, 266, 723, 466);
 		getContentPane().add(scrollPane);
 		panel = new JPanel();
 		panel.setOpaque(false);
@@ -392,8 +392,7 @@ public class GUI extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(0, 0, 1366, 768);
-		lblNewLabel.setIcon(new ImageIcon(GUI.class
-				.getResource("/images/Bakgrund morotter.jpg")));
+		lblNewLabel.setIcon(new ImageIcon(GUI.class.getResource("/images/Bakgrund-morotter_new.jpg")));
 		getContentPane().add(lblNewLabel);
 
 		greenButton.addActionListener(new ActionListener() {
@@ -402,7 +401,7 @@ public class GUI extends JFrame {
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1366, 768);
+		setSize(1024, 772);
 		setResizable(true);
 		setVisible(true);
 	}
