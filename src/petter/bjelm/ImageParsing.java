@@ -22,15 +22,18 @@ public class ImageParsing {
 	private ArrayList<String> imgURLArray = new ArrayList<String>();
 	private Document doc;
 	private Document imgDoc;
-	
+
 	public ImageParsing() {
 
 	}
 
+	//Takes the xml document returns an array of thumbnail URL:s
 	public ArrayList<String> getURLArray(Document docIn) throws IOException,
 			ParserConfigurationException, SAXException, TransformerException {
+
 		System.out.println("Loading image URL:s......");
 
+		// clears the array every time the code runs (button is pressed)
 		imgNamesArray.clear();
 		imgURLArray.clear();
 
@@ -40,42 +43,22 @@ public class ImageParsing {
 		NodeList nodes = root.getElementsByTagName("value");
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node data = nodes.item(i);
-
+			
+			//Gets the file name of the image
 			if (data instanceof Element) {
 				Element name = (Element) data;
 				imgNamesArray.add(name.getAttribute("fulltext"));
 
 			}
 		}
-		
-/*		Element root = doc.getDocumentElement();
-		NodeList nodes = root.getElementsByTagName("Bild");
-		for (int i = 0; i < nodes.getLength(); i++) {
-			Node data = nodes.item(i);
-			
-			
-			System.out.println("HÄR: "+data.getNodeValue());
-			
-			if (nodes.item(i).hasChildNodes()){
-				if (data instanceof Element) {
-					Element name = (Element) data;
-					
-					imgNamesArray.add(name.getAttributeNode("fulltext").getTextContent());
-					System.out.println("DETTA: "+name.getAttributeNode("fulltext").getTextContent());
-					//imgNamesArray.add("fil:ravaru_ikon_sasongsmat.png");
-					
-				}
-			}else{
-				imgNamesArray.add("fil:ravaru_ikon_sasongsmat.png");
-			}
-		}
-*/
+
 		for (int i = 0; i < imgNamesArray.size(); i++) {
 			imgURLArray.add(parseImg(imgNamesArray.get(i)));
 		}
 		return imgURLArray;
 	}
-
+	
+	//Gets thumbnail image URL from the insertet file names
 	public String parseImg(String imgText) throws IOException,
 			ParserConfigurationException, SAXException, TransformerException {
 		String s = null;
