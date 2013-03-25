@@ -97,7 +97,7 @@ public class GUI extends JFrame {
 
 	public GUI() {
 		super("Add component on JFrame at runtime");
-		setTitle("S\u00E4songsr\u00E5varor 1.0");
+		setTitle("S\u00E4songsmat 1.0");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUI.class.getResource("/images/icon.png")));
 
 		nameArray = new ArrayList<String>();
@@ -237,7 +237,6 @@ public class GUI extends JFrame {
 		zoneComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//titleTextTop.setText(chosenCategory.replace("_", " ")+" i säsong under " + patternExamples[monthComboBox.getSelectedIndex()]);
 				int index = zoneComboBox.getSelectedIndex();
 
 				if (chosenCategory == null) {
@@ -417,7 +416,7 @@ public class GUI extends JFrame {
 		lblKtt.setBounds(140, 687, 100, 16);
 		getContentPane().add(lblKtt);
 		
-		start = new JLabel("<html><center>Säsongsvåvaror är en applikation som hjälper dig att göra<br> klimatsmartare, godare, nyttigare och billigare mat</center></html>");
+		start = new JLabel("<html><center>Säsongsmat är en applikation som hjälper dig att göra<br> klimatsmartare, godare, nyttigare och billigare mat</center></html>");
 		start.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
 		start.setHorizontalAlignment(SwingConstants.CENTER);
 		start.setBounds(270, 225, 722, 478);
