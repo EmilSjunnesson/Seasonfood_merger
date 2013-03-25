@@ -77,6 +77,7 @@ public class GUI extends JFrame {
 	private JLabel lblRotfrukter;
 	private JLabel lblKtt;
 	private JLabel info;
+	private JLabel start;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -393,9 +394,17 @@ public class GUI extends JFrame {
 		lblKtt.setBounds(140, 687, 100, 16);
 		getContentPane().add(lblKtt);
 		
-		info = new JLabel("info");
+		start = new JLabel("<html><center>Säsongsvåvaror är en applikation som hjälper dig att göra<br> klimatsmartare, godare, nyttigare och billigare mat</center></html>");
+		start.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
+		start.setHorizontalAlignment(SwingConstants.CENTER);
+		start.setBounds(270, 225, 722, 478);
+		getContentPane().add(start);
+		
+		info = new JLabel("");
+		info.setBackground(new Color(60, 179, 113));
+		info.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
 		info.setHorizontalAlignment(SwingConstants.CENTER);
-		info.setBounds(270, 225, 722, 478);
+		info.setBounds(354, 422, 544, 45);
 		getContentPane().add(info);
 
 		MyLine myLine = new MyLine();
@@ -451,7 +460,9 @@ public class GUI extends JFrame {
 		rowX = 30;
 		buttonCounter = 0;
 		chosenCategory = category;
-
+		
+		start.setText("");
+		
 		JScrollBar verticalScrollBar = scrollPane.getVerticalScrollBar();
 		verticalScrollBar.setValue(verticalScrollBar.getMinimum());
 
@@ -496,9 +507,11 @@ public class GUI extends JFrame {
 		}
 		
 		if (nameArray.isEmpty()) {
-			info.setText("HJÄLP");
+			info.setText("Hittade inget i säsong för den valda kategorien: "+chosenCategory);
+			info.setOpaque(true);
 		}else{
 			info.setText("");
+			info.setOpaque(false);
 		}
 		
 		for (int i = 0; i < URLArray.size(); i++) {
