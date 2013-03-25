@@ -12,15 +12,16 @@ import org.w3c.dom.Document;
 public class Parse {
 
 	private String monthText = "00";
-	private int monthNumber;
 	private String type = "Grönsaker";
 	private String zone;
 	private Document doc;
 	private int month;
+
 	public Parse() {
 
 	}
 
+	// Parse xml from säsongsmat.se, typeIn is the category you are looking for
 	public Document ParseDoc(String typeIn) throws Exception {
 
 		type = typeIn;
@@ -39,7 +40,7 @@ public class Parse {
 		return doc;
 	}
 
-	// * Ändrar URL till dagens datum */
+	// Gets current month
 	public String getCurrDate() {
 		Calendar cal = Calendar.getInstance();
 		month = cal.get(Calendar.MONTH) + 1;
@@ -58,15 +59,15 @@ public class Parse {
 	public void setZone(String area) {
 		zone = area;
 	}
-	
-	public int getDate(){
+
+	public int getDate() {
 		int newMonth;
 		if (Integer.parseInt(monthText) < 10) {
-			newMonth = Integer.parseInt( monthText);
+			newMonth = Integer.parseInt(monthText);
 		} else {
 			newMonth = Integer.parseInt(monthText);
 		}
-		
-	return newMonth;
+
+		return newMonth;
 	}
 }
