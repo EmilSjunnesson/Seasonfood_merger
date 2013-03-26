@@ -53,6 +53,7 @@ public class GUI extends JFrame {
 	private GroupLayout gl_panel;
 	private String titleText;
 	private String monthNow;
+	private String zoneNow;
 	private Document doc;
 	private Parse parse;
 	
@@ -150,77 +151,78 @@ public class GUI extends JFrame {
 				}
 
 				switch (index) {
+				
 				case 0:
 					parse.setDate(parse.getCurrDate());
 					buttonLogic(chosenCategory);
-					
 					break;
+					
 				case 1:
 					parse.setDate("01");
 					monthNow="Januari";
 					buttonLogic(chosenCategory);
-					
 					break;
+					
 				case 2:
 					parse.setDate("02");
-					
 					monthNow="Februari";
 					buttonLogic(chosenCategory);
 					break;
+					
 				case 3:
 					parse.setDate("03");
-					
 					monthNow="Mars";
 					buttonLogic(chosenCategory);
 					break;
+					
 				case 4:
 					parse.setDate("04");
-					
-					
 					monthNow="April";
 					buttonLogic(chosenCategory);
 					break;
+					
 				case 5:
 					parse.setDate("05");
-					
 					monthNow="Maj";
 					buttonLogic(chosenCategory);
 					break;
+					
 				case 6:
 					parse.setDate("06");
-					buttonLogic(chosenCategory);
 					monthNow="Juni";
+					buttonLogic(chosenCategory);
 					break;
+					
 				case 7:
 					parse.setDate("07");
-					
 					monthNow="Juli";
 					buttonLogic(chosenCategory);
 					break;
+					
 				case 8:
 					parse.setDate("08");
 					monthNow="Augusti";
 					buttonLogic(chosenCategory);
-					
 					break;
+					
 				case 9:
 					parse.setDate("09");
-					
 					monthNow="September";
 					buttonLogic(chosenCategory);
 					break;
+					
 				case 10:
 					parse.setDate("10");
 					monthNow="Oktober";
 					buttonLogic(chosenCategory);
-					
 					break;
+					
 				case 11:
 					parse.setDate("11");
 					monthNow="November";
 					buttonLogic(chosenCategory);
-					
 					break;
+					
 				case 12:
 					parse.setDate("12");
 					monthNow="December";
@@ -228,7 +230,6 @@ public class GUI extends JFrame {
 					
 				default:
 					parse.setDate(parse.getCurrDate());
-
 					break;
 					
 				}
@@ -255,22 +256,27 @@ public class GUI extends JFrame {
 				switch (index) {
 				case 0:
 					parse.setZone("Z2");
+					zoneNow = " i södra Sverige";
 					buttonLogic(chosenCategory);
 					break;
 				case 1:
 					parse.setZone("Z3");
+					zoneNow = " i sydligaste Sverige";
 					buttonLogic(chosenCategory);
 					break;
 				case 2:
 					parse.setZone("Z2");
+					zoneNow = " i södra Sverige";
 					buttonLogic(chosenCategory);
 					break;
 				case 3:
 					parse.setZone("Z1");
+					zoneNow = " i norra Sverige";
 					buttonLogic(chosenCategory);
 					break;
 				default:
 					parse.setZone("Z2");
+					zoneNow = " i södra Sverige";
 					break;
 				}
 				
@@ -682,7 +688,13 @@ public class GUI extends JFrame {
 
 		}
 		//Set title on search area
-		titleTextTop.setText(chosenCategory.replace("_", " ")+" i säsong under " + monthNow);
+		if(zoneNow == null)
+		{
+			zoneNow = "";
+		}
+		titleTextTop.setText(chosenCategory.replace("_", " ")+" i säsong under " + monthNow + "" + zoneNow);
+		
+		
 	}
 
 	public JPanel getRawInfoPanel() {
