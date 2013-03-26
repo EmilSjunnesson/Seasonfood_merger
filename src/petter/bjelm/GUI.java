@@ -491,7 +491,7 @@ public class GUI extends JFrame {
 		lblKtt.setBounds(140, 687, 100, 16);
 		getContentPane().add(lblKtt);
 		
-		start = new JLabel("<html><center>Säsongsmat är en applikation som hjälper dig att göra<br> klimatsmartare, godare, nyttigare och billigare mat</center></html>");
+		start = new JLabel("<html><center>Välkomen till Säsongsmat - Din guide till klimatsmartare mat! <br><br><br> Säsongsmat är en applikation som hjälper dig att göra<br> smarta val inför din matlagning med klimatet i fokus. <br><br>Du börjar med att välja bland kategorierna till höger <br> och därefter klickar du på den råvara<br>du vill läsa mer om. <br><br> Du kan även välja säsong eller del av Sverige<br>för att specificera din sökning.</center></html>");
 		start.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
 		start.setHorizontalAlignment(SwingConstants.CENTER);
 		start.setBounds(270, 225, 722, 478);
