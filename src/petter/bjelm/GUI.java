@@ -32,24 +32,30 @@ import javax.swing.border.EtchedBorder;
 import java.awt.ComponentOrientation;
 import javax.swing.border.CompoundBorder;
 import java.awt.Toolkit;
+import javax.swing.JTextPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Rectangle;
+import java.awt.SystemColor;
 
 public class GUI extends JFrame {
-
-	private JPanel panel;
-	private int i;
+	
 	private int lastRow = 0;
 	private int rowX = 0;
 	private int rowY = 0;
-	private int setButtonsPerRows = 5;
 	private int buttonCounter = 0;
 	private int nrButtons = 0;
+	private int panelHeight = 0;
+
+	private JPanel panel;
+	private int i;
 	private String chosenCategory;
 	private GroupLayout gl_panel;
 	private String titleText;
 	private String monthNow;
 	private Document doc;
 	private Parse parse;
-	private int panelHeight = 0;
+	
 	private ArrayList<String> nameArray;
 	private ArrayList<JButton> buttonArray;
 	private ArrayList<JLabel> labelArray;
@@ -62,10 +68,7 @@ public class GUI extends JFrame {
 	private JComboBox zoneComboBox;
 	private GetImgFromURL URLImage;
 
-	private int buttonWidth = 130;
-	private int buttonHeight = 130;
-	private int labelWidth = 130;
-	private int labelHeight = 36;
+
 	private JScrollPane scrollPane;
 	private JLabel lblKategorier;
 	private JLabel titleTextTop;
@@ -79,6 +82,12 @@ public class GUI extends JFrame {
 	private JLabel lblKtt;
 	private JLabel info;
 	private JLabel start;
+	private JButton closeButt;
+	private JPanel rawInfoPanel;
+	private JTextPane rawInfoText;
+	private JLabel rawInfoTitle;
+	private JTextPane txtpnSavojklOdlasP;
+	private JLabel lblMiljpverkan;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -271,6 +280,66 @@ public class GUI extends JFrame {
 		
 		getContentPane().setLayout(null);
 		getContentPane().add(monthComboBox);
+		
+		rawInfoPanel = new JPanel();
+		rawInfoPanel.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, null));
+		rawInfoPanel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+			}
+		});
+		rawInfoPanel.addContainerListener(null);
+		
+		rawInfoPanel.setBackground(new Color(143, 188, 143));
+		rawInfoPanel.setVisible(false);
+		rawInfoPanel.setBounds(269, 224, 723, 479);
+		getContentPane().add(rawInfoPanel);
+		rawInfoPanel.setLayout(null);
+		
+		
+		closeButt = new JButton("St\u00E4ng");
+		closeButt.setBounds(638, 11, 75, 23);
+		rawInfoPanel.add(closeButt);
+		
+		rawInfoTitle = new JLabel("SAVOJK\u00C5L");
+		rawInfoTitle.setForeground(new Color(255, 255, 255));
+		rawInfoTitle.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		rawInfoTitle.setBounds(28, 32, 284, 23);
+		rawInfoPanel.add(rawInfoTitle);
+		
+		lblMiljpverkan = new JLabel("Milj\u00F6p\u00E5verkan");
+		lblMiljpverkan.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
+		lblMiljpverkan.setBounds(360, 51, 175, 23);
+		rawInfoPanel.add(lblMiljpverkan);
+		
+		rawInfoText = new JTextPane();
+		rawInfoText.setBackground(new Color(128, 128, 128));
+		rawInfoText.setForeground(new Color(0, 0, 0));
+		rawInfoText.setOpaque(false);
+		rawInfoText.setBorder(null);
+		rawInfoText.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		rawInfoText.setText("Savojk\u00E5l \u00E4r en k\u00E5lsort med krusiga, m\u00F6rkgr\u00F6na blad. Den finns skandinaviskt odlad under h\u00F6sten, och nordeuropeisk hela vintern. \u00D6vriga tider p\u00E5 \u00E5ret kommer den oftast fr\u00E5n Italien. Namnet kommer av ursprungsomr\u00E5det, det medeltida alp-grevskapet Savojen (numera delat mellan Frankrike och Italien). I Norden har den odlats sedan 1600-talet.\r\n\r\nSavojk\u00E5l g\u00E5r att \u00E4ta r\u00E5, d\u00E5 g\u00E4rna strimlad i sallader och liknande, eller tillagad.");
+		rawInfoText.setBounds(28, 62, 322, 377);
+		rawInfoPanel.add(rawInfoText);
+		
+		txtpnSavojklOdlasP = new JTextPane();
+		txtpnSavojklOdlasP.setText("R\u00E5varan odlas p\u00E5 friland, vilket \u00E4r mindre energikr\u00E4vande \u00E4n v\u00E4xthusodling. S\u00E4rskilt under h\u00F6sten, n\u00E4r det finns lokalt odlad savojk\u00E5l i Skandinavien, \u00E4r den ett bra klimatval. Som m\u00E5nga k\u00E5lsorter kr\u00E4ver den dock mycket n\u00E4ring, och i konventionell odling anv\u00E4nds d\u00E4rf\u00F6r mycket g\u00F6dsel. Vid ekologisk odling anv\u00E4nds inget konstg\u00F6dsel.");
+		txtpnSavojklOdlasP.setOpaque(false);
+		txtpnSavojklOdlasP.setForeground(Color.BLACK);
+		txtpnSavojklOdlasP.setFont(new Font("Trebuchet MS", Font.BOLD, 14));
+		txtpnSavojklOdlasP.setBorder(null);
+		txtpnSavojklOdlasP.setBackground(Color.GRAY);
+		txtpnSavojklOdlasP.setBounds(360, 81, 322, 358);
+		rawInfoPanel.add(txtpnSavojklOdlasP);
+		
+		closeButt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				rawInfoPanel.setVisible(false);
+			}
+		});
 		getContentPane().add(zoneComboBox);
 
 		
@@ -468,7 +537,7 @@ public class GUI extends JFrame {
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1024, 741);
-		setResizable(true);
+		setResizable(false);
 		setVisible(true);
 	}
 
@@ -478,9 +547,10 @@ public class GUI extends JFrame {
 
 	// Creates buttons representing the search result depending on chosen category and month
 	public void buttonLogic(String category) {
+		rawInfoPanel.setVisible(false);
 		scrollPane.setVisible(true);
 		rowY = 0;
-		lastRow = setButtonsPerRows;
+		lastRow = Constants.setButtonsPerRows;
 		rowX = 30;
 		buttonCounter = 0;
 		chosenCategory = category;
@@ -558,8 +628,8 @@ public class GUI extends JFrame {
 			labels[i].setForeground(Color.BLACK);
 
 			if (i == lastRow) {
-				rowY = rowY + buttonHeight + 20;
-				lastRow = i + setButtonsPerRows;
+				rowY = rowY + Constants.buttonHeight + 20;
+				lastRow = i + Constants.setButtonsPerRows;
 				// System.out.println(rowY + " Y");
 
 			} else {
@@ -567,24 +637,24 @@ public class GUI extends JFrame {
 			}
 
 			// System.out.println(buttonCounter);
-			if (buttonCounter == setButtonsPerRows) {
+			if (buttonCounter == Constants.setButtonsPerRows) {
 				buttonCounter = 0;
 
-				buttons[i].setBounds((buttonWidth * buttonCounter), rowY,
-						buttonWidth, buttonHeight);
+				buttons[i].setBounds((Constants.buttonWidth * buttonCounter), rowY,
+						Constants.buttonWidth, Constants.buttonHeight);
 
-				labels[i].setBounds((buttonWidth * buttonCounter), rowY + 120,
-						labelWidth, labelHeight);
+				labels[i].setBounds((Constants.buttonWidth * buttonCounter), rowY + 120,
+						Constants.labelWidth, Constants.labelHeight);
 
 			} else {
 
 				buttons[i].setBounds(
-						(buttonWidth * buttonCounter + 10 * buttonCounter),
-						rowY, buttonWidth, buttonHeight);
+						(Constants.buttonWidth * buttonCounter + 10 * buttonCounter),
+						rowY, Constants.buttonWidth, Constants.buttonHeight);
 
 				labels[i].setBounds(
-						(buttonWidth * buttonCounter + 10 * buttonCounter),
-						rowY + 120, labelWidth, labelHeight);
+						(Constants.buttonWidth * buttonCounter + 10 * buttonCounter),
+						rowY + 120, Constants.labelWidth, Constants.labelHeight);
 			}
 
 			buttonCounter++;
@@ -597,7 +667,10 @@ public class GUI extends JFrame {
 			buttons[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String choice = e.getActionCommand();
-					JOptionPane.showMessageDialog(null, "Råvaran "+ choice + " är i säsong\nI nästa uppdatering av Säsongsråvaror \nkommer det finnas mer information om råvaran.");
+					rawInfoPanel.setVisible(true);
+					rawInfoTitle.setText(choice);
+					rawInfoText.setText("Råvaran "+choice+" är en råvara med krusiga, mörkgröna blad. Den finns skandinaviskt odlad under hösten, och nordeuropeisk hela vintern. Övriga tider på året kommer den oftast från Italien. Namnet kommer av ursprungsområdet, det medeltida alp-grevskapet Savojen numera delat mellan Frankrike och Italien. I Norden har den odlats sedan 1600-talet.Savojkål går att äta rå, då gärna strimlad i sallader och liknande, eller tillagad.");
+					//JOptionPane.showMessageDialog(null, "Råvaran "+ choice + " är i säsong\nI nästa uppdatering av Säsongsråvaror \nkommer det finnas mer information om råvaran.");
 				}
 			});
 
@@ -612,5 +685,13 @@ public class GUI extends JFrame {
 		titleTextTop.setText(chosenCategory.replace("_", " ")+" i säsong under " + monthNow);
 	}
 
-
+	public JPanel getRawInfoPanel() {
+		return rawInfoPanel;
+	}
+	public JTextPane getRawInfoText() {
+		return rawInfoText;
+	}
+	public JLabel getRawInfoTitle() {
+		return rawInfoTitle;
+	}
 }
